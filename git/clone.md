@@ -12,4 +12,4 @@
 	³É:
 	LANG="zh_CN.GBK"
 	SUPPORTED="zh_CN.UTF-8:zh_CN:zh"
-	SYSFONT="latarcyrheb-sun16"
+	SYSFONT="latarcyrheb-sun16" 
