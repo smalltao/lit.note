@@ -18,3 +18,7 @@
 
 2、xshell 下vim 配色方案
     设置256配色 set t_Co=256
+3、基本配置
+    filetype on 开启文本类型侦测
+    filetype plugin on 根据侦测到的不同文件类型加载不同的插件
+    
