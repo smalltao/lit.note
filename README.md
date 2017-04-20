@@ -1,2 +1,3 @@
-# lit.note
-李涛的笔记
+# 笔记
+markdown preview plus 插件可以预览md文件
+
