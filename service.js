@@ -4,9 +4,19 @@ var url = require("url");
 function start(route, handle){
     function onRequest(request,response){
         // 事件驱动，只有请求发生时才执行
+        var postData = "";
         var pathname = url.parse(request.url).pathname;
         console.log("request "+ pathname  +"  recevied");
-        route(handle, pathname, response);
+
+        request.setEncoding("utf8");        
+        
+        request.addListener("data", function(postDataTrunk) {
+            postData += postDataTrunk;
+
+        });
+
+
+        //route(handle, pathname, response);
 
         //将response 函数放到route 可以实现非阻塞操作
         //response.writeHead(200, {"Content-Type":"text/plain"});
