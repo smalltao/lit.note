@@ -22,3 +22,4 @@
     filetype on 开启文本类型侦测
     filetype plugin on 根据侦测到的不同文件类型加载不同的插件
     
+4、移动当前行到指定行 m move n 移动行标为m的行到n行
