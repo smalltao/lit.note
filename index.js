@@ -6,5 +6,6 @@ handle = {};
 handle["/"] = requestHandlers.start;
 handle["/start"] = requestHandlers.start;
 handle["/upload"] = requestHandlers.upload;
+handle["/dictionary"] = requestHandlers.dictionary;
 
 service.start(router.route, handle);
