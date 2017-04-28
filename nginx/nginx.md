@@ -31,6 +31,7 @@ nginx 从入门到精通 运维生存时间 http://www.ttlsa.com/nginx/nginx-stu-pdf/
     \# /usr/local/nginx-1.5.1/sbin/nginx -s reload
     
 ## nginx 编译参数详解
+```
 --prefix=指向安装目录
 --sbin-path 指向（执行文件）程序文件（nginx）
 --conf-path=指向nginx配置文件（nginx.conf）
@@ -90,6 +91,7 @@ nginx 从入门到精通 运维生存时间 http://www.ttlsa.com/nginx/nginx-stu-pdf/
 --http-uwsgi-temp-path=设定http uwsgi 临时文件路径
 --http-scgi-temp-path=设定scgi 临时文件路径
 --without-http 禁用http server 功能
+```
 
 
 
