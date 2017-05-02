@@ -499,6 +499,19 @@ nginx指定文件路径的两种方式
 
 4、创建新的重写规则
     
+    实列1 要将home目录重定向到主页面上，目录结构如下
+    /
+    /home
+    /home/index
+    /home/index/
+    /index
+    /index.php
+    /index.php/
+    重写规则如下：
+    rewrite ^/(home(/index)?|index(\.php)?)/?$ $schema;
+    // $host/ permanent;
+    
+    
     
     
     
