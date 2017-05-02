@@ -276,8 +276,231 @@ nginx 从入门到精通 运维生存时间 http://www.ttlsa.com/nginx/nginx-stu-pdf/
     ~ 表示区分大小写的正则匹配
     ~* 表示不分区大小写的正则匹配
     !~ 和 !~* 分别为区分大小写和不区分大小写的不匹配正则
-    /通用匹配，
+    /通用匹配，任何请求都会匹配到
+    
+    优先级
+    多个locaton配置顺序：
+    优先级  = >^~ > 首先匹配= 其次匹配^~ 、其次是正则匹配，最后/ 通用匹配，当匹配成功时停止匹配，按当前规则处理
+    
+    location / {
+        echo "/"; #需要安装echo模块
+    }
+    
+    静态文件匹配规则
+    location ~* .*\.(js|ccc)?$ {
+        expires 7d; # 7天过期
+        access_log off; #不保存日志
+    }
+    location ~* .*\.(png|jpg|gif|jpeg|bmp|ico)?$ {
+        expires 7d;
+        access_log off;
+    }
+    location ~* .*\.(zip|rar|exe|msi|iso|gho|mp3|rmvb|mp4|wma|rm)?$ {
+        deny all; # 禁止这些文件下载
+    }
 
+11、nginx root & alias 文件路径配置
+nginx指定文件路径的两种方式
+
+    [root]
+    语法：root path 
+    默认值：root html
+    配置段：http、server、location、if
+    
+    [alias]
+    语法：alias path
+    配置段：location
+    
+    eg:
+    location ~ ^/weblogs/ {
+        root /data/weblogs/www.tools.com;
+        autoindex on;
+        auth_basic "Restricted";
+        auth_basic_user_file passwd/weblogs
+    }
+    如果一个请求的url是/weblogs/httplogs/www.tools.com-access.log时，web服务器将会返回返回服务器上/data/weblogs/www.tools.com/weblogs/httplogs/www.tools.com-access.log的文件
+    根据完整的url请求映射，也就是/path/uri
+    
+    location ^~ /binapp/ {
+        limit_con limit 4;
+        limit_rate 200k;
+        internal;
+        alias /data/statics/bin/apps/;
+    }
+    #alias会把location后面配置的路径丢弃掉，把当前匹配到的目录指向到指定的目录。如果一个请求的uri是/binapp/a.tools.com/favicon时，web服务器将会返回/data/statics/bin/apps/a.tools.com/favicon.jpg的文件
+    #alias 可以指定任何名称
+    #alias 在使用正则匹配时，必须捕捉要匹配的内容并在指定的内容处处理
+    #alias 只能位于location块中
+
+12、ngx_http_core_module 处理请求时，会有大量的变量，这些变量可以通过访问日志记录下来，也可以用于其他nginx模块
+
+    参数名称    注释
+    $arg_PARAMETER HTTP 请求中某个参数的值，如/index.php?site=www.tools.com,可以用$arg_site取的www.tools.com这个值
+    $args HTTP 请求中的完整参数。例如：在请求/index.php?width=400&height=200中，$args表示字符串width=400$height=200
+    $binary_remote_addr 二进制格式的客户端地址。例如：\xOA\xEOB\XOE
+    $body_tytes_sent 表示向客户端发送的http响应中，包体部分的字节数
+    $content_length 表示客户端请求头部中的Content-Length字段
+    $content_type 表示客户端请求头部中的Content-Type字段
+    $cookie_COOKIE 表示客户端请求头部中的cookie字段
+    $document_root 表示当前请求所使用的root配置项的值
+    $uri 表示当前请求的uri,不带任何参数
+    $document_uri 同$uri
+    $request_uri 表示客户端发来的原始请求uri，带完整的参数,$uri 和document_uri未必是用户的原始请求，在内部重定向之后可能是重定向之后的uri,而$request_uri永远不会改变，始终是客户端的原始uri
+    $host 表示客户端请求头部中的Host字段，如果Host不存在，则以实际处理的server（虚拟主机）名称代替。如果Host字段带有端口，如：IP：PORT，那么$host会去掉端口，它的值是ip，$host是全小写的，这些特性与http_HEADER中的http_host不同，http_host只取出Host头部对应的的值
+    $hostname 表示nginx所在机器的名称，与gethostbyname 返回的值相同
+    $http_HEADER 表示当前HTTP请求中相应请求头部的值。HEADER名称全小写，例如：请求中Host 头部对应的值 $http_host
+    $sent_http_HEADER表示返回给客户端响应中相应头部的值。HEADER名称全小写。例如：$sent_http_content_type 表示响应中Content-Type
+    $is_args 表示请求中uri是否带参数，如果带参数,$is_args值为？，如果不带参数，则值为空字符串
+    $limit_rate 表示当前链接的限制是多少，0表示无限速
+    $nginx_version 表示当前nginx版本号
+    $query_string 请求url中的参数，与$args参数相同，但是$query_string 只读不会改变
+    $remote_addr 表示客户端的地址
+    $remote_port 表示客户端俩呢及使用的端口
+    $remote_user 表示使用Auth Basic Module 时定义的用户名
+    $request_filename 表示用户请求中的url经过root或proxy_pass或fastcgi_pass中有意义
+    $request_body 表示http请求中的包体，该参数只在proxy_pass 或fastcai_pass中有意义
+    $request_body_file 表示http请求中包体存储的临时文件名
+    $request_completion 当请求已经全部完成时，其值为ok 如没有没完成，则其值为空字符串
+    $request_method 表示http请求的方法名，如get、put、post
+    $server_addr 表示服务器地址
+    $server_name 表示服务器名称
+    $server_port 表示服务器端口
+    $server_protocol 表示服务器向客户端发送的响应协议，如HTTP/1.1 或HTTP/1.0
+
+## nginx日志配置
+
+## nginx 重写规则
+1、重写规则依赖于pcre库，所以需要安装pcre库location循环最多执行10次，超过之后返回500 错误，重写模块包含set指令，用来创建新的变量并设其值
+
+2、rewite 模块指令
+    
+    break
+    语法：break
+    默认值：none
+    使用字段：server; location; if
+    
+    if 
+    语法：if (condition) { ... }
+    默认值：none
+    使用字段：server; location
+    注意：尽量使用trp_files代替
+    判断的条件可以有以下值
+    1、一个变量的名称： 空字符传" "或者一些"0" 开始的字符串为false
+    2、字符串比较：使用=或!=预算符
+    3、正则表达式：使用~（区分大小写）和~* （不区分大小写），取反预算!~和!~*
+    4、文件是否存在：使用-f 和!-f操作符
+    5、目录是否存在:使用-d 和!-d操作符
+    6、文件、目录、符号链接是否存在：使用-e和!-e操作符
+    7、文件是否可执行：使用-x 和!-x操作符
+    
+    return
+    语法：return code
+    默认值：none
+    使用字段：server; location; if
+    停止处理并未客户端返回状态码。非标准的444状态码将关闭链接，不发送任何相应头。可以使用的状态码：
+    204; 400; 402-406; 408; 410; 411; 413; 416; 500-504;如果状态码附带文字段落，该文本将防止在响应主题。
+    相反，如果状态码后面是一个url ，改url将成为location头补值。没有状态码的url将被视为一个302状态码。
+    
+    rewrite 
+    语法：rewrite regex replacement flag
+    默认值：none
+    使用字段：server; location; if
+    按照相关的正则表达式与字符串修改url，指令按照在配置文件中出现的顺序执行。可以在重写指令后面添加标记
+    注意：如果替换的字符串以http://开头，请求将被重定向，并且不再执行多余的rewirte指令
+    尾部的（flag）可以是以下值：
+    last - 停止处理重写模块指令，之后搜索location 与更改后的uri匹配
+    break - 完成重写指令
+    redirect - 返回302 临时重定向，如果替换字段用http://开头则被使用
+    permanent - 返回301 永久重定向
+    
+    rewrite_log
+    语法：rewrite_log on | off
+    默认值：rewrite_log off
+    使用字段：server; location; if
+    变量：无
+    启用时将在error log中记录notice 级别的重写日志
+
+    set 
+    语法： set variable value
+    默认值：none
+    使用字段：server; location; if 
+    为给定的变量设置一个特定值
+    
+    uninitialized_variable_warn
+    语法：uninitialized_variable_warn on|off
+    默认值：uninitialized_variable_warn on
+    使用字段：http; server; location; if 
+    控制是否记录未初始化变量的警告信息
+    
+2、重写规则组成部分
+    
+    1、正则表达式
+    正则表达式的内容可以通过括号捕获，后续可以通过位置将其引用，位置变量的值取决于捕获正则表达式中顺序，$1引用第一个括号中的内容，$2引用第二个括号中的值，以此类推 eg:
+    ^/images/([a-z]{2})/(a-z0-9){5}/(.*)\.(png|jpg|gif)$
+    $1是两个小写字母组成的字符串
+    $2是由小写字母和0到9的数字组成的5个字符的字符串
+    $3是文件名
+    $4是png jpg gif中的一个
+    
+    2、uri
+    该URI可能包含正则表达式中捕获的位置参数或这个级别下的nginx任何配置eg:
+    /data?file=$3.$4
+    如果这个uri不匹配nginx配置的任何的location ,那么将给客户端返回301（永久重定向）或302（临时重定向）的状态码，该状态可以通过第三个参数明确指定(第三个参数是啥？)
+    
+    3、尾部标记（falg）
+    last 标记将导致重写后的uri 搜索匹配nginx的其他location，最多可以循环10次eg：
+    rewrite ^/images/([a-z]{2})/(a-z0-9){5}/(.*)\.(png|jpg|gif)$ /data?file=$3.$4 last;
+    break 指令可以当做自身指令 eg：
+    if ($bwhog) {
+        limit_rate 300k;
+        break;
+    }
+    另一个停止重写模块处理指令是return ，来控制主http模块处理请求，这意味着，nginx直接返回信息给客户端，与error_page结合为客户端呈现格式化的html页面，
+    如果状态码附带文字段落，该文本将被放置在响应主体，相反，如果状态码后面是一个url，该url将成为location头的补值，没有状态的url将被视为302状态码eg:
+    location = /image404.html {
+        return 404 "image not found\n";
+    }
+    
+3、实例
+
+        http {
+            #定义image 日志格式
+            log_format imagelog '[$time_local]' '$image_file' '$image_type' '$body_sent' '$status';
+            #开启重写日志
+            rewrite_log on;
+            
+            server {
+                root /home/www;
+                
+                location / {
+                    #重写规则信息
+                    error_log logs/rewrite.log notice;
+                    #注意这里要用'' 引号引起来，避免{}
+                    rewrite '^/images/([a-z]{2})/(a-z0-9){5}/(.*)\.(png|jpg|gif)$' /data?file=$3.$4;
+                    #注意不能再上面这条规则后面加上“last” 参数，否则下面的set指令不会执行
+                    set $image_file $3;
+                    set $image_type $4;
+                }
+                
+                location /data {
+                    #指定针对图片的日志格式，来分析图片类型和大小
+                    access_log logs/images.log main;
+                    root /data/images;
+                    #应用前面的变量。首先判断文件存不存在，不在在判断目录在不在，如果还是不在就跳转到最后一个url里
+                    try_file/$arg_file/images404.html;
+                }
+                
+                location = /image404.html {
+                    #图片不存在则返回特定的信息
+                    return 404 "image not found\n";
+                }
+            }
+        }
+
+4、创建新的重写规则
+    
+    
+    
     
 
 
