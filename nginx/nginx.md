@@ -91,7 +91,198 @@ nginx 从入门到精通 运维生存时间 http://www.ttlsa.com/nginx/nginx-stu-pdf/
 --http-uwsgi-temp-path=设定http uwsgi 临时文件路径
 --http-scgi-temp-path=设定scgi 临时文件路径
 --without-http 禁用http server 功能
+--without-http-cache 禁用http 缓存功能
+--without-mail 启用pop3/imap4/smtp 代理模块支持
+--without-mail_ssl_module 启用ngx_mail_ssl_module 支持
+--without-mail_pop3_module 禁用pop3 协议 （POP3即邮局协议的第3个版本,它是规定个人计算机如何连接到互联网上的邮件服务器进行收发邮件的协议。是因特网电子邮件的第一个离线协议标 准,POP3协议允许用户从服务器上把邮件存储到本地主机上,同时根据客户端的操作删除或保存在邮件服务器上的邮件。POP3协议是TCP/IP协议族中的一员，主要用于 支持使用客户端远程管理在服务器上的电子邮件）
+--without-mail_imap_module 禁用imap 协议（一种邮件获取协议。它的主要作用是邮件客户端可以通过这种协议从邮件服务器上获取邮件的信息，下载邮件等。IMAP协议运行在TCP/IP协议之上， 使用的端口是143。它与POP3协议的主要区别是用户可以不用把所有的邮件全部下载，可以通过客户端直接对服务器上的邮件进行操作。）
+--without_mail_smtp_module 禁用smtp 协议 （SMTP即简单邮件传输协议,它是一组用于由源地址到目的地址传送邮件的规则，由它来控制信件的中转方式。SMTP协议属于TCP/IP协议族，它帮助每台计算机在发送或中转信件时找到下一个目的地。）
+--with-google_perftools_module 启用ngx_google_perftools_module 支持 （调试用，剖析程序性能瓶颈）
+--with-cpp_test_module 启用ngx_cpp_test_module 支持
+--add-module= 启用外部模块支持
+--with-cc= 执向c编译器路径
+--with-cpp= 执向c预处理路径
+--with-cc-opt= 设置c编译器参数（pcre库，需要指定 -with-cc-opt="-I /usr/local/include" ，如果使用select()函数则需要同时增加文件描述符数量，可以通过–with-cc- opt=”-D FD_SETSIZE=2048”指定。）
+–with-ld-opt= 设置连接文件参数。（PCRE库，需要指定–with-ld-opt=”-L /usr/local/lib”。） 
+–with-cpu-opt= 指定编译的CPU，可用的值为: pentium, pentiumpro, pentium3, pentium4, athlon, opteron, amd64, sparc32, sparc64, ppc64 
+–without-pcre 禁用pcre库 
+–with-pcre 启用pcre库 
+–with-pcre= 指向pcre库文件目录 
+–with-pcre-opt= 在编译时为pcre库设置附加参数 
+–with-md5= 指向md5库文件目录（消息摘要算法第五版，用以提供消息的完整性保护） 
+–with-md5-opt= 在编译时为md5库设置附加参数 
+–with-md5-asm 使用md5汇编源 
+–with-sha1= 指向sha1库目录（数字签名算法，主要用于数字签名） 
+–with-sha1-opt= 在编译时为sha1库设置附加参数 
+–with-sha1-asm 使用sha1汇编源 
+–with-zlib= 指向zlib库目录 
+–with-zlib-opt= 在编译时为zlib设置附加参数
+–with-md5-asm 使用md5汇编源 
+–with-sha1= 指向sha1库目录（数字签名算法，主要用于数字签名） 
+–with-sha1-opt= 在编译时为sha1库设置附加参数 
+–with-sha1-asm 使用sha1汇编源 
+–with-zlib= 指向zlib库目录 
+–with-zlib-opt= 在编译时为zlib设置附加参数 
+–with-zlib-asm= 为指定的CPU使用zlib汇编源进行优化，CPU类型为pentium, pentiumpro –with-libatomic 为原子内存的更新操作的实现提供一个架构 
+–with-libatomic= 指向libatomic_ops安装目录 
+–with-openssl= 指向openssl安装目录 
+–with-openssl-opt 在编译时为openssl设置附加参数 
+–with-debug 启用debug日志
 ```
+
+## nginx安装配置，清缓存模块安装
+
+1、下载软件包
+
+    # mkdir /usr/local/src/tarbag
+    # mkdir /usr/local/src/software
+    # cd /usr/local/src/tarbag
+    Nginx 
+    # wget http://nginx.org/download/nginx-1.0.6.tar.gz
+    # Nginx cache purge 模块 （可选）
+    # wget http://labs.frickle.com/files/ngx_cache_purge-1.3.tar.gz
+
+2、编译安装
+
+    # cd /usr/local/src/tarbag
+    # tar -xzvf nginx-1.0.6.tar.gz -C /usr/local/src/software  #解压到当前目录下的software目录下
+    # tar -xzvf ngx_cache_purge-1.3.tar.gz -C /usr/local/src/software 
+    # cd /usr/local/src/software/
+    # ./configure \ 
+    -prefix=/usr/local/nginx-1.0.6 \ # 安装路径
+    -with-http_stub_status_module \ # 启用nginx状态模块
+    --with-http_ssl_module \ # 启用ssl 模块
+    --with-http_realip_module \ #　启用realip模块（将用户ip转发给后端服务器）
+    -add-module=../ngx_cache_purge-1.3 # 添加缓存清除扩展模块
+    #make 
+    #make install
+    
+3、内核参数优化
+    
+    #vim sysctl.conf 增加以下配置
+    # vi sysctl.conf 增加以下配置 
+    net.ipv4.netfilter.ip_conntrack_tcp_timeout_established = 1800 
+    net.ipv4.ip_conntrack_max = 16777216 ＃ 如果使用默认参数,容易出现网络丢包 
+    net.ipv4.netfilter.ip_conntrack_max = 16777216＃ 如果使用默认参数,容易出现网络丢包 
+    net.ipv4.tcp_max_syn_backlog = 65536 
+    net.core.netdev_max_backlog = 32768 
+    net.core.somaxconn = 32768 
+    net.core.wmem_default = 8388608 
+    net.core.rmem_default = 8388608 
+    net.core.rmem_max = 16777216 
+    net.core.wmem_max = 16777216 
+    net.ipv4.tcp_timestamps = 0 
+    net.ipv4.tcp_synack_retries = 2 
+    net.ipv4.tcp_syn_retries = 
+    net.ipv4.tcp_tw_recycle = 1 
+    net.ipv4.tcp_tw_reuse = 1 
+    net.ipv4.tcp_mem = 94500000 915000000 927000000 
+    net.ipv4.tcp_max_orphans = 3276800 
+    net.ipv4.ip_local_port_range = 1024 65535
+    配置生效
+    #sysctl -p
+    修改iptables 启用脚本，在star()函数里面加上
+    # vim /etc/init.d/iptables
+    /sbin/sysctl -p 
+
+4、配置范例：站点
+    
+    序号  域名  目录
+    1   www.tools.com   /www/html/www.tools.com
+    2   bbs.tools.com   /www/html/bbs.tools.com
+
+5、修改nginx配置文件
+    
+    #vim nginx.conf
+    user nobody nobody; #运行nginx的所有组和所有者
+    worker_processes 2; #开启两个nginx工作进程，一般几个cpu核心就写几个
+    error_log logs/error.log notice; #错误日志路径
+    pid logs/nginx.pid; #pid路径
+    events {
+        worker_connections 1024; #一个进程能同时处理1024个请求
+    }
+    http {
+        include mime.types;
+        default_type application/octet-stream;
+        
+        log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+        '$status $body_bytes_sent "$http_refoerer" '
+        '"$http_user_agent" "$http_x_forwarded_for" '
+        access_log logs/access.log main; # 默认访问日志路径
+        sendfile on;
+        keeplive_timeout 65; #keeplive 超时时间（长连接超时时间）
+        
+        # 开始配置一个域名，一个server配置段 一段对应一个域名
+        server {
+            listen 80; # 在本机所有ip上监听80 ，也可以写192.168.1.201:80,这样的话就只监听192.168.1.201的80 端口
+            server_name www.tools.com; # 域名
+            root /www/html/www.test.com; # 站点根目录（程序目录）
+            index index.html index.htm; # 索引文件
+            location / { # 可以有多个location
+                root /www.html/www.test.com; # 站点根目录（程序目录）
+                error_page 500 502 503 504 /50x.html;
+                #定义错误页面，如果是500错误，则把站点根目录下的50x.html返给用户
+                location = /50x.html {
+                    root /www/html/www.tools.com;
+                }
+            }
+        }
+        #开始站点bbs配置
+        server {
+            listen 80; # 在本机所有ip上监听80 ，也可以写192.168.1.201:80,这样的话就只监听192.168.1.201的80 端口
+            server_name bbs.tools.com; # 域名
+            root /www/html/www.test.com; # 站点根目录（程序目录）
+            index index.html index.htm; # 索引文件
+            location / { # 可以有多个location
+                root /www.html/www.test.com; # 站点根目录（程序目录）
+                error_page 500 502 503 504 /50x.html;
+                #定义错误页面，如果是500错误，则把站点根目录下的50x.html返给用户
+                location = /50x.html {
+                    root /www/html/bbs.tools.com;
+                }
+            }
+        }
+    } 
+    
+6、nginx启动关闭
+    
+    # /usr/local/nginx-1.0.6/sbin/nginx # 启动nginx
+    # /usr/local/nginx-1.0.6/sbing/nginx -t # 测试nginx配置文件的准确性
+    # /usr/local/nginx-1.0.6/sbing/nginx -s reload # 重载nginx
+    # /usr/local/nginx-1.0.6/sbing/nginx -s stop # 关闭nginx
+
+7、测试、创建测试站点
+    
+    # mkdir -p /www/html/www.tools.com
+    # mkdir -p /www/html/bbs.tools.com
+    # echo "www.tools.com" > /www.html/www.tools.com/index.html
+    # echo "www.bbs.tools.com" > /www.html/bbs.tools.com/index.html
+8、启动nginx
+    
+    # /usr/local/nginx-1.0.6/sbin/nginx -t # 看到ok和successful 说明配置文件没有问题
+    # /usr/local/nginx-1.0.6/sbin/nginx
+    
+9、绑定host、测试
+
+    把两个域名指向192.168.1.201
+    192.168.1.201   www.tools.com
+    192.168.1.201   bbs.tools.com
+
+10、location 语法规则
+    
+    语法规则：location [=|~|~*|^~] /uri/ { ... }
+    = 表示精确匹配，优先级最高
+    ^~ 表示url以某个常规字符串开头，理解为url路径即可，nginx不对路径做编码，因此/static/20%/aa 可以被规则 ^~ /static/ /aa匹配到（20% 是空格）
+    ~ 表示区分大小写的正则匹配
+    ~* 表示不分区大小写的正则匹配
+    !~ 和 !~* 分别为区分大小写和不区分大小写的不匹配正则
+    /通用匹配，
+
+    
+
+
+    
+    
 
 
 
