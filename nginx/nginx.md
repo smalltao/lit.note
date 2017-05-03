@@ -509,7 +509,8 @@ nginx指定文件路径的两种方式
     /index.php/
     重写规则如下：
     rewrite ^/(home(/index)?|index(\.php)?)/?$ $schema;
-    // $host/ permanent;
+    # $host/ permanent; 
+    指定$scheme 和$host变量，因为要做一个永久重定向并希望nginx使用相同的参数构造url
     
     
     
