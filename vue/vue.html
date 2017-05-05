@@ -7,7 +7,7 @@
 
     </style>
 </head>
-<body>
+<>
 <div id="app">
     {{ message }}
 </div>
@@ -104,6 +104,81 @@
 <div id="eventVm">
     <button v-on:click="warn('不能提交表单', $event)">submit</button>
 </div>
+
+<!--阻止事件冒泡-->
+<a v-on:click.stop="doThis"></a>
+
+<!--提交事件不再重载页面-->
+<from v-on:submit.prevent="onSubmit"></from>
+
+<!--修饰符可以串联-->
+<a v-on:click.stop.prevent="doThat"></a>
+
+<!--只有修饰符-->
+<a v-on:click.stop></a>
+
+<!--添加事件监听器时使用事件捕获模式-->
+<div v-on:click.captrue="doThis"></div>
+
+<!--只当事件在该元素本身（而不是子元素）触发时触发回调-->
+<div v-on:click.self="doThat"></div>
+
+<!--点击事件只会触发一次-->
+<a v-on:click.once="doThis"></a>
+
+<!--只有在keyCode是13时执行submit-->
+<a v-on:keyup.13="submit"></a>
+
+<pre>
+按键别名 全局 config.keyCodes 对象自定义按键修饰符别名：
+.enter
+.tab
+.delete (捕获 “删除” 和 “退格” 键)
+.esc
+.space
+.up
+.down
+.left
+.right
+</pre>
+
+<pre>
+可以用如下修饰符开启鼠标或键盘事件监听，使在按键按下时发生响应。
+.ctrl
+.alt
+.shift
+.meta
+</pre>
+<!--双向数据绑定-->
+<input v-model="message" palceholder="编辑 我">
+<p> message is {{ message }}</p>
+
+<pre>
+组件 全局组件
+Vue.component('my-component', {
+    //选项
+});
+</pre>
+
+<div id="counter-event-example">
+    <p>{{ total }}</p>
+    <button-counter v-on:increment="incrementTotal"></button-counter>
+    <button-counter v-on:increment="incrementTotal"></button-counter>
+</div>
+<p></p>
+<!--监控原生事件-->
+<my-component v-on:click.native="doTheThing"></my-component>
+
+<input v-model="something">
+
+<input v-bind:value="something" v-on:input="something = $event.target.value">
+
+<custom-input v-bind:value="something" v-on:input="something = arguments[0]"></custom-input>
+
+<p></p>
+<!--货币输入的控件-->
+<currency-input v-model="price"></currency-input>
+
 </body>
 
 <script src="vue.js"></script>

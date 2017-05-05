@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="markdown.css">
+</head>
+<body>
+<div id="editor">
+    <textarea :value="input" @input="update"></textarea>
+    <div v-html="compileMarkdown"></div>
+</div>
+<script src="../vue.js"></script>
+<script src="markdown.js"></script>
+</body>
+</html>
