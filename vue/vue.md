@@ -1,4 +1,4 @@
-# [vue.js 笔记](https://cn.vuejs.org/v2/guide/) 
+# vue.js 笔记 [vue 官方教程](https://cn.vuejs.org/v2/guide/) 
 
 #组件 
 ## 什么是组件
