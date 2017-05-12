@@ -37,6 +37,18 @@ public voidarchiveOldSpittles() {
 }
 ```
 ## cron 详细说明
-
+    
+1. 格式：
+``` bash 
+Seconds Minutes Hours DayofMonth Month DayofWeek Year 或 
+Seconds Minutes Hours DayofMonth Month DayofWeek
+Seconds:可出现,-  *  / 四个字符，有效范围为0-59的整数    
+Minutes:可出现,-  *  / 四个字符，有效范围为0-59的整数    
+Hours:可出现,-  *  / 四个字符，有效范围为0-23的整数    
+DayofMonth:可出现,-  *  / ? L W C八个字符，有效范围为0-31的整数     
+Month:可出现,-  *  / 四个字符，有效范围为1-12的整数或JAN-DEc    
+DayofWeek:可出现,-  *  / ? L C #四个字符，有效范围为1-7的整数或SUN-SAT两个范围。1表示星期天，2表示星期一， 依次类推    
+Year:可出现,-  *  / 四个字符，有效范围为1970-2099年
+```
 
 
