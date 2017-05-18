@@ -117,4 +117,6 @@ public class CustomHandlerExceptionResolver implements HandlerExceptoinResolver 
 ```bash
 
 > 配置Spring 支持异常捕获
+```
 <bean class="cn.bg.controller.CustomHandlerExceptionResolver">
+```bash
