@@ -1,6 +1,6 @@
-# µ¥Ôª²âÊÔ
+# å•å…ƒæµ‹è¯•
 ## @Rule 
-> ÀûÓÃ@RuleÎÒÃÇ¿ÉÒÔÀ©Õ¹JUnitµÄ¹¦ÄÜ£¬ÔÚÖ´ĞĞcaseµÄÊ±ºò¼ÓÈë²âÊÔÕßÌØÓĞµÄ²Ù×÷£¬¶ø²»Ó°ÏìÔ­ÓĞµÄcase´úÂë£º¼õĞ¡ÁËÌØÓĞ²Ù×÷ºÍcaseÔ­Âß¼­µÄñîºÏ¡£
+> åˆ©ç”¨@Ruleæˆ‘ä»¬å¯ä»¥æ‰©å±•JUnitçš„åŠŸèƒ½ï¼Œåœ¨æ‰§è¡Œcaseçš„æ—¶å€™åŠ å…¥æµ‹è¯•è€…ç‰¹æœ‰çš„æ“ä½œï¼Œè€Œä¸å½±å“åŸæœ‰çš„caseä»£ç ï¼šå‡å°äº†ç‰¹æœ‰æ“ä½œå’ŒcaseåŸé€»è¾‘çš„è€¦åˆã€‚
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -9,13 +9,13 @@
     public void testDetect_WrongKey() throws Exception {
         Detect.setKey("wrong_key");
         Detect.setClientId(null);
-        exception.expect(RuntimeException.class); //ÆÚ´ıµÄÒì³£ÊÇ
+        exception.expect(RuntimeException.class); //æœŸå¾…çš„å¼‚å¸¸æ˜¯
         exception.expectMessage("INVALID_API_KEY - Please set the API Key with your Bing Developer's Key");
         Detect.execute("? ?? ??? ?????");
     }
 
 ## @Before
-> ÔÚÃ¿¸ö²âÊÔ·½·¨Ö®Ç°¶¼»áÔËĞĞÒ»´Î£¬Ö»ĞèÉùÃ÷³É public
+> åœ¨æ¯ä¸ªæµ‹è¯•æ–¹æ³•ä¹‹å‰éƒ½ä¼šè¿è¡Œä¸€æ¬¡ï¼Œåªéœ€å£°æ˜æˆ public
 
     Properties p;
     @Before
@@ -41,10 +41,10 @@
     }
 
 ## @BeforeClass
-> ÔÚÀàÖĞÖ»ÔËĞĞÒ»´Î£¬±ØĞëÉùÃ÷³Épublic static
+> åœ¨ç±»ä¸­åªè¿è¡Œä¸€æ¬¡ï¼Œå¿…é¡»å£°æ˜æˆpublic static
 
 ## @After
-> ÔÚÃ¿¸ö²âÊÔ·½·¨Ö®ºó¶¼»áÖ´ĞĞÒ»´Î
+> åœ¨æ¯ä¸ªæµ‹è¯•æ–¹æ³•ä¹‹åéƒ½ä¼šæ‰§è¡Œä¸€æ¬¡
 
     @After
     public void tearDown() throws Exception {
@@ -52,11 +52,11 @@
     }
     
 ## @Test
-> µ¥Ôª²âÊÔ·½·¨ Ã»ÓĞ·µ»ØÖµ
+> å•å…ƒæµ‹è¯•æ–¹æ³• æ²¡æœ‰è¿”å›å€¼
 
     public void testLargeTooLarge() throws Exception {
         
     }
 
-# ¶ÏÑÔ
+# æ–­è¨€
 

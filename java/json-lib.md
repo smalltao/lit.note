@@ -1,8 +1,8 @@
-# json-libÊ¹ÓÃÅäÖÃ
+# json-libä½¿ç”¨é…ç½®
 
-1. json toBean Ê±È¥³ı¿Õ×Ö·û´® ºÍ null ×Ö¶Î
+1. json toBean æ—¶å»é™¤ç©ºå­—ç¬¦ä¸² å’Œ null å­—æ®µ
 
-        Ê¹ÓÃÀ­Ä·µÄ±í´ïÊ½
+        ä½¿ç”¨æ‹‰å§†çš„è¡¨è¾¾å¼
         JsonConfig jsonConfig = new JsonConfig();
         PropertyFilter filter = (object, fieldName, fieldValue) -> {
             if(fieldValue instanceof List){
@@ -22,7 +22,7 @@
         jsonConfig.setJsonPropertyFilter(filter);
         JSONArray.fromObject(result, jsonConfig).toString();
         
-        //ÆÕÍ¨·½Ê½
+        //æ™®é€šæ–¹å¼
         JsonConfig jsonConfig = new JsonConfig();
         PropertyFilter filter = new PropertyFilter() {
                 public boolean apply(Object object, String fieldName, Object fieldValue) {
@@ -36,7 +36,7 @@
                 }
         };
         
-2. ·µ»ØÈÕÆÚ¸ñÊ½»¯
+2. è¿”å›æ—¥æœŸæ ¼å¼åŒ–
 
 
     public class JsonDateValueProcessor implements JsonValueProcessor {

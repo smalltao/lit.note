@@ -1,26 +1,26 @@
-# redis ÊµÕ½±Ê¼Ç 
-1. °²×°
+# redis å®æˆ˜ç¬”è®° 
+1. å®‰è£…
 ```
-ÏÂÔØ: wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/redis/redis-2.6.14.tar.gz
-½âÑ¹£ºtar -xzvf redis-2.6.14.tar.gz 
-±àÒë£º# make
-Æô¶¯£º# src/redis-server
-½« redis ×÷Îª linux ·şÎñËæ»úÆô¶¯
-# vim /etc/rc.localÎÄ¼ş£¬Ä©Î²×·¼Ó /root/4setup/redis-2.6.14/src/redis-server
-ÑéÖ¤£º ĞÂ¿ªsession ÊäÈësrc/redis-cli 
-Í£Ö¹£ºsrc/redis-cli shutdown
+ä¸‹è½½: wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/redis/redis-2.6.14.tar.gz
+è§£å‹ï¼štar -xzvf redis-2.6.14.tar.gz 
+ç¼–è¯‘ï¼š# make
+å¯åŠ¨ï¼š# src/redis-server
+å°† redis ä½œä¸º linux æœåŠ¡éšæœºå¯åŠ¨
+# vim /etc/rc.localæ–‡ä»¶ï¼Œæœ«å°¾è¿½åŠ  /root/4setup/redis-2.6.14/src/redis-server
+éªŒè¯ï¼š æ–°å¼€session è¾“å…¥src/redis-cli 
+åœæ­¢ï¼šsrc/redis-cli shutdown
 ```bash
 
-2. ²Ù×÷Êı¾İ¿â
+2. æ“ä½œæ•°æ®åº“
 ```
-²åÈë£º
+æ’å…¥ï¼š
 # set name wwl
-²éÑ¯£º
+æŸ¥è¯¢ï¼š
 # get name 
-É¾³ı:
-del name  É¾³ı³É¹¦ÊÇ: 1 É¾³ıÊ§°ÜÊÇ: 0 
-ÑéÖ¤¼üÊÇ·ñ´æÔÚ£º
-exists name ´æÔÚÊÇ£º1 ²»´æÔÚÊÇ£º0
+åˆ é™¤:
+del name  åˆ é™¤æˆåŠŸæ˜¯: 1 åˆ é™¤å¤±è´¥æ˜¯: 0 
+éªŒè¯é”®æ˜¯å¦å­˜åœ¨ï¼š
+exists name å­˜åœ¨æ˜¯ï¼š1 ä¸å­˜åœ¨æ˜¯ï¼š0
 ```bash
 
 

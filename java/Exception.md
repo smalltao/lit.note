@@ -1,5 +1,5 @@
-# json ¸´ÔÓ¶ÔÏó×ª»»´íÎó
-> ÔÚÊ¹ÓÃJSONObject.toBeanµÄÊ±ºò£¬µÃµ½µÄBeanÀïÃæµÄ¸´ÔÓÊý¾ÝÀàÐÍ²»ÄÜ×ª»»³ÉÐèÒªµÄ¶ÔÏóÀàÐÍ¡£
+# json å¤æ‚å¯¹è±¡è½¬æ¢é”™è¯¯
+> åœ¨ä½¿ç”¨JSONObject.toBeançš„æ—¶å€™ï¼Œå¾—åˆ°çš„Beané‡Œé¢çš„å¤æ‚æ•°æ®ç±»åž‹ä¸èƒ½è½¬æ¢æˆéœ€è¦çš„å¯¹è±¡ç±»åž‹ã€‚
 > java.lang.ClassCastException: net.sf.ezmorph.bean.MorphDynaBean cannot be cast to com.edu.xukai.Student at com.edu.xukai.TestJSONObject.main(TestJSONObject.java:25)
 
-> ½â¾ö°ì·¨£ºÊ¹ÓÃJSONObject.toBean(jsonObject, beanClass, classMap) 
+> è§£å†³åŠžæ³•ï¼šä½¿ç”¨JSONObject.toBean(jsonObject, beanClass, classMap) 
