@@ -1,7 +1,7 @@
-# spring 注解 @ExceptionHandler spring 异常拦截
+# spring 娉ㄨВ @ExceptionHandler spring 寮傚父鎷︽埅
 
 ```
-当这个控制器中任意一个方法抛出运行时异常，会被spring拦截，封装false到map
+褰撹繖涓帶鍒跺櫒涓换鎰忎竴涓柟娉曟姏鍑鸿繍琛屾椂寮傚父锛屼細琚玸pring鎷︽埅锛屽皝瑁協alse鍒癿ap
 @Controller
 public class AccessController {
     @ExceptionHandler(RuntimeException.class)        

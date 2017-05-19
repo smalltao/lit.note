@@ -1,10 +1,10 @@
-# spring mvc ȫ���쳣����
+# spring mvc 全局异常捕获
 
-> `web.xml` ָ��`error-code`��`page`��ָ����ַ
+> `web.xml` 指定`error-code`和`page`到指定地址
 
-> ʹ��`spring mvc` ��ȫ���쳣�����ܣ� ���Ը�����Ҫ��һЩ����������������־��¼
+> 使用`spring mvc` 的全局异常捕获功能， 可以根据需要做一些后续处理，比如日志记录
 
-## ��������� `web.xml` ���ϵ�`spring mvc` ��
+## 定义服务器 `web.xml` 整合到`spring mvc` 中
 1. `web.xml`
 ```
 <error-page>
@@ -15,7 +15,7 @@
     <error-code>500</error-code>
     <location>/500</location>
 </error-page>
-<!-- δ����Ĵ���Ҳ����ָ�������쳣�࣬���Զ�Ӱ�쳣�� -->
+<!-- 未捕获的错误，也可以指定其它异常类，或自定影异常类 -->
 <error-page>
     <exception-type>java.lang.Exception</exception-type>
     <location>/uncaughtException</location>
@@ -24,16 +24,16 @@
 ```
 2. `applicationContext.xml` 
 ```
-<!-- ����·���ʹ���ҳ�棬ע��ָ��viewResolver -->
+<!-- 错误路径和错误页面，注意指定viewResolver -->
 <mvc:view-controller path="/404" view-name="404" />
 <mvc:view-controller path="/500" view-name="500" />
 <mvc:view-controller path="/uncaughException" view-name="uncaughtEeception" />
 ```bash
 
-## spring ȫ���쳣 
-1. �������ַ�ʽ
+## spring 全局异常 
+1. 代码入侵方式
 
-> �쳣�׳�
+> 异常抛出
 ```
 @Controller
 public class MainController {
@@ -45,10 +45,10 @@ public class MainController {
 }
 ```bash
 
-> �쳣����
+> 异常捕获
 ```
-//ע��ʹ��ע��@ControllerAdvice��������ȫ��Controller��Χ
-//@ControllerAdvice ����Ӧ�õ�����@RequestMapping��򷽷��ϵ�@ExceptionHandler�� @InitBinder ��@ModelAttribute ��������@ExceptionHandler
+//注意使用注解@ControllerAdvice作用域是全局Controller范围
+//@ControllerAdvice 可以应用到所有@RequestMapping类或方法上的@ExceptionHandler、 @InitBinder 、@ModelAttribute 在这里是@ExceptionHandler
 @ControllerAdvice
 public class ControllerAdvice {
     @ExceptionHandler(NullPointerException.class)
@@ -60,18 +60,18 @@ public class ControllerAdvice {
 }
 ```bash
 
-2. ���÷�ʽ 
+2. 配置方式 
 
-> �쳣�׳� ͬ��
+> 异常抛出 同上
 
-> �쳣���� 
+> 异常捕获 
 ```
 <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-    <!-- Ĭ�ϴ���ҳ�棬����execeptionMappingsָ����Χ�� -->
+    <!-- 默认错误页面，不在execeptionMappings指定范围内 -->
     <property name="defaultErrorView" value="uncaughtException" />
     <property name="exceptionMapping">
         <props>
-            <!-- �쳣������������ȫ·��������ҳ���Controller·���� -->
+            <!-- 异常类名，可以是全路径，错误页面或Controller路径！ -->
             <prop key=".NulPointerException">NullPointerException</prop>
             <prop key="java.io.IOException">IOException</prop>
         </props>
@@ -79,9 +79,9 @@ public class ControllerAdvice {
 </bean>
 ```bash
 
-3. �Զ����쳣����쳣����
+3. 自定义异常类和异常解析
 
-> �Զ����쳣�ࣺ
+> 自定义异常类：
 ```
 public class CustomException extends RuntimeException {
     public CustomException() {
@@ -94,7 +94,7 @@ public class CustomException extends RuntimeException {
 }
 ```bash
 
-> �쳣�׳�
+> 异常抛出
 ```
 @ResponseBody
 @RequestMapping("/ce")
@@ -103,20 +103,20 @@ public String ce(CustomException e) {
 }
 ```bash
 
-> ʵ���쳣����ӿ� HandlerExceptionResolver
+> 实现异常捕获接口 HandlerExceptionResolver
 ```
 public class CustomHandlerExceptionResolver implements HandlerExceptoinResolver {
     @Override
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
         model.put("e", e);
-        //������Ը��ݲ�ͬ�쳣������ͬ�Ĵ�������
+        //这里可以根据不同异常，做不同的处理凡是
         String viewName = ClassUtils.getShortName(e.getClass());
         return new ModelAndView(viewName, model);
     }
 }
 ```bash
 
-> ����Spring ֧���쳣����
+> 配置Spring 支持异常捕获
 ```
 <bean class="cn.bg.controller.CustomHandlerExceptionResolver">
 ```bash
