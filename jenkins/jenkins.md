@@ -1,36 +1,36 @@
-# ÏîÄ¿×Ô¶¯»¯¹¹½¨ test1
-1. ÏîÄ¿Ãû³Æ ReventonYoudao Tag
-2. ÏîÄ¿ÃèÊö ´´½¨Êý¾ÝÖÐÐÄÖ®ÓÐµÀµÄtag
+# é¡¹ç›®è‡ªåŠ¨åŒ–æž„å»º test1
+1. é¡¹ç›®åç§° ReventonYoudao Tag
+2. é¡¹ç›®æè¿° åˆ›å»ºæ•°æ®ä¸­å¿ƒä¹‹æœ‰é“çš„tag
 
-# ²ÎÊý»¯¹¹½¨¹ý³Ì 
+# å‚æ•°åŒ–æž„å»ºè¿‡ç¨‹ 
 1. String Parameter
     
-        Ãû×Ö username
-        Ä¬ÈÏÖµ 
-        ÃèÊö svn ÓÃ»§Ãû
+        åå­— username
+        é»˜è®¤å€¼ 
+        æè¿° svn ç”¨æˆ·å
     
 2. Password Parameter
 
         Name password
         Default Value
-        Description svn ÃÜÂë
+        Description svn å¯†ç 
 
 3. Choice 
             
         Name tag_type
         Choices req jin zhong
-        Description req -> ÀýÐÐ jin -> ½ô¼±ÉÏÏß zhong -> ÖØ´óÉÏÏß
+        Description req -> ä¾‹è¡Œ jin -> ç´§æ€¥ä¸Šçº¿ zhong -> é‡å¤§ä¸Šçº¿
 
-# Ô´Âë¹ÜÀí
+# æºç ç®¡ç†
         
        none
        
-# ¹¹½¨»·¾³
+# æž„å»ºçŽ¯å¢ƒ
         
         Mark passwords (and enable global passwords)
         Password Parameters, or any other type of build parameters selected for masking in Hudson's/Jenkins' main configuration screen (Manage Hudson > Configure System), will be automatically masked.
     
-# ¹¹½¨
+# æž„å»º
     
      dateStr=`date + "%Y%m%d"`
      trunkURL=""

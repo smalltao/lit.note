@@ -1,2 +1,2 @@
-1. Àà¼Ì³ĞÁËSerializable½Ó¿ÚÖ®ºó£¬Ê¹ÓÃalt+enter¿ì½İ¼ü×Ô¶¯´´½¨ĞòÁĞ»¯id 
-½øÈësetting¡úinspections¡úserialization issues¡úÑ¡ÔñÍ¼ÖĞµÄÑ¡Ïî¡£serializable class without ¡®serialVersionUID¡¯ 
+1. ç±»ç»§æ‰¿äº†Serializableæ¥å£ä¹‹åï¼Œä½¿ç”¨alt+enterå¿«æ·é”®è‡ªåŠ¨åˆ›å»ºåºåˆ—åŒ–id 
+è¿›å…¥settingâ†’inspectionsâ†’serialization issuesâ†’é€‰æ‹©å›¾ä¸­çš„é€‰é¡¹ã€‚serializable class without â€˜serialVersionUIDâ€™ 

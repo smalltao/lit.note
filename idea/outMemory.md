@@ -1,3 +1,3 @@
-内存溢出
-1、使用idea64.exe启动
-2、修改idea.exe.vmoptions
+鍐呭瓨婧㈠嚭
+1銆佷娇鐢╥dea64.exe鍚姩
+2銆佷慨鏀筰dea.exe.vmoptions

@@ -1,22 +1,22 @@
-# vue.js ±Ê¼Ç [vue ¹Ù·½½Ì³Ì](https://cn.vuejs.org/v2/guide/) 
+# vue.js ç¬”è®° [vue å®˜æ–¹æ•™ç¨‹](https://cn.vuejs.org/v2/guide/) 
 
-#×é¼þ 
-## Ê²Ã´ÊÇ×é¼þ
-×é¼þ¿ÉÒÔÀ©Õ¹htmlÊµÀý£¬·â×°¿ÉÖØÓÃµÄ´úÂë£¬×é¼þÊÇ×Ô¶¨ÒåÔªËØ£¬ÎªvueÌí¼ÓÌØÊâ¹¦ÄÜ
-1¡¢×¢²á
+#ç»„ä»¶ 
+## ä»€ä¹ˆæ˜¯ç»„ä»¶
+ç»„ä»¶å¯ä»¥æ‰©å±•htmlå®žä¾‹ï¼Œå°è£…å¯é‡ç”¨çš„ä»£ç ï¼Œç»„ä»¶æ˜¯è‡ªå®šä¹‰å…ƒç´ ï¼Œä¸ºvueæ·»åŠ ç‰¹æ®ŠåŠŸèƒ½
+1ã€æ³¨å†Œ
     
-    È«¾Ö×¢²á×é¼þ
-    Óï·¨£ºVue.component(componentName, opthions) eg:
+    å…¨å±€æ³¨å†Œç»„ä»¶
+    è¯­æ³•ï¼šVue.component(componentName, opthions) eg:
     Vue.component('my-componentName', {
-        //Ñ¡Ïî
+        //é€‰é¡¹
     })
     
-    ×¢²á
+    æ³¨å†Œ
     Vue.component('my-button', {
-        template: '<p>ÕâÊÇÒ»¸ö×é¼þ</p>'
+        template: '<p>è¿™æ˜¯ä¸€ä¸ªç»„ä»¶</p>'
     })
     
-    //ÊµÀýÖÐÊ¹ÓÃ
+    //å®žä¾‹ä¸­ä½¿ç”¨
     new Vue({
         el: '#example'
     })
@@ -25,10 +25,10 @@
         <my-button></my-button>
     </div>
     
-    ¾Ö²¿×¢²á×é¼þ
+    å±€éƒ¨æ³¨å†Œç»„ä»¶
     
     var child = {
-        template : '<p>ÕâÊÇÒ»¸ö×é¼þ</p>'
+        template : '<p>è¿™æ˜¯ä¸€ä¸ªç»„ä»¶</p>'
     }
     new Vue({
         el: '#example',
@@ -37,10 +37,10 @@
         }
     })
  
-# ½ø½×
-## vue »ìºÏ
+# è¿›é˜¶
+## vue æ··åˆ
     
-    //¶¨ÒåÒ»¸ö»ìºÏ¶ÔÏó
+    //å®šä¹‰ä¸€ä¸ªæ··åˆå¯¹è±¡
     var myMixin = {
         create: function() {
             this.hello()
@@ -51,7 +51,7 @@
             }
         }
     }
-    //¶¨ÒåÒ»¸öÊ¹ÓÃ»ìºÏ¶ÔÏóµÄ×é¼þ
+    //å®šä¹‰ä¸€ä¸ªä½¿ç”¨æ··åˆå¯¹è±¡çš„ç»„ä»¶
     var Component = Vue.extend({
         mixins: [myMixin]
     })
@@ -59,21 +59,21 @@
     
     var mixxin = {
         created: function() {
-            console.log('»ìºÏ¶ÔÏóµÄ¹³×Ó±»µ÷ÓÃ')
+            console.log('æ··åˆå¯¹è±¡çš„é’©å­è¢«è°ƒç”¨')
         }
     }
     new Vue({
         mixins: [mixxin],
         created: function() {
-            console.log('×é¼þ¹³×Ó±»µ÷ÓÃ')
+            console.log('ç»„ä»¶é’©å­è¢«è°ƒç”¨')
         }
     })
     
-    ½á¹û 
-    // -> »ìºÏ¶ÔÏóµÄ¹³×Ó±»µ÷ÓÃ 
-    // -> ×é¼þµÄ¹³×Ó±»µ÷ÓÃ
+    ç»“æžœ 
+    // -> æ··åˆå¯¹è±¡çš„é’©å­è¢«è°ƒç”¨ 
+    // -> ç»„ä»¶çš„é’©å­è¢«è°ƒç”¨
     
-    //ÖµÎª¶ÔÏóµÄÑ¡Ïî£¬ÀýÈç methods, components ºÍ directives, ½«±»»ìºÏ³ÉÎªÍ¬Ò»¸ö¶ÔÏó£¬Á½¸ö¶ÔÏó¼üÃû³åÍ»Ê±£¬È¡×é¼þ¶ÔÏóµÄ¼üÖµ¶Ô
+    //å€¼ä¸ºå¯¹è±¡çš„é€‰é¡¹ï¼Œä¾‹å¦‚ methods, components å’Œ directives, å°†è¢«æ··åˆæˆä¸ºåŒä¸€ä¸ªå¯¹è±¡ï¼Œä¸¤ä¸ªå¯¹è±¡é”®åå†²çªæ—¶ï¼Œå–ç»„ä»¶å¯¹è±¡çš„é”®å€¼å¯¹
     
     var mixin = {
         methods: {
@@ -99,12 +99,12 @@
     vm.foo() // -> "foo"
     vm.bar() // -> "bar"
     vm.conflicting() // -> "from self"
-    Vue.extend() Ò²ÊÇÓÃÍ¬ÑùµÄ²ßÂÔ½øÐÐºÏ²¢
+    Vue.extend() ä¹Ÿæ˜¯ç”¨åŒæ ·çš„ç­–ç•¥è¿›è¡Œåˆå¹¶
     
-## È«¾Ö»ìºÏ
+## å…¨å±€æ··åˆ
 
-    Ò²¿ÉÒÔÊ¹ÓÃÈ«¾Ö×¢²á»ìºÏ¶ÔÏó¡£ ×¢Òâ£ºÒ»µ©Ê¹ÓÃÁËÈ«¾Ö»ìºÏ¶ÔÏó£¬½«»áÓ°Ïìµ½ËùÓÐÖ®ºó´´½¨µÄVueÊµÀý¡£Ç¡µ±Ê¹ÓÃÊ±£¬¿ÉÒÔÎª×Ô¶¨Òå×¢Èë´¦ÀíÂß¼­
-    //Îª×Ô¶¨ÒåµÄÑ¡Ïî 'myOption' ×¢ÈëÒ»¸ö´¦ÀíÆ÷¡£
+    ä¹Ÿå¯ä»¥ä½¿ç”¨å…¨å±€æ³¨å†Œæ··åˆå¯¹è±¡ã€‚ æ³¨æ„ï¼šä¸€æ—¦ä½¿ç”¨äº†å…¨å±€æ··åˆå¯¹è±¡ï¼Œå°†ä¼šå½±å“åˆ°æ‰€æœ‰ä¹‹åŽåˆ›å»ºçš„Vueå®žä¾‹ã€‚æ°å½“ä½¿ç”¨æ—¶ï¼Œå¯ä»¥ä¸ºè‡ªå®šä¹‰æ³¨å…¥å¤„ç†é€»è¾‘
+    //ä¸ºè‡ªå®šä¹‰çš„é€‰é¡¹ 'myOption' æ³¨å…¥ä¸€ä¸ªå¤„ç†å™¨ã€‚
     Vue.mixin({
         create: function() {
             var myOption = this.$options.myOption
@@ -114,23 +114,23 @@
         } 
     })
     new Vue({
-        myOption:¡¡'hello!'
+        myOption:ã€€'hello!'
     })
     // -> "hello!"
-    Çë½÷É÷Ê¹ÓÃÈ«¾Ö»ìºÏ¶ÔÏó£¬ÒòÎª»áÓ°Ïìµ½Ã¿Ò»¸öµ¥¶À´´½¨µÄVueÊµÀý £¨°üÀ¨µÚÈý·½Ä£°å£©¡£´ó¶àÊýÇé¿öÏÂ£¬Ö»Ó¦µ±Ó¦ÓÃÓÚ×Ô¶¨ÒåÑ¡Ïî£¬¾ÍÏëÉÏÃæÊ¾ÀýÒ»Ñù£¬
-    Ò²¿ÉÒÔ½«Æä×÷Îªplugins ÒÔÃâÖØ¸´Ó¦ÓÃ
+    è¯·è°¨æ…Žä½¿ç”¨å…¨å±€æ··åˆå¯¹è±¡ï¼Œå› ä¸ºä¼šå½±å“åˆ°æ¯ä¸€ä¸ªå•ç‹¬åˆ›å»ºçš„Vueå®žä¾‹ ï¼ˆåŒ…æ‹¬ç¬¬ä¸‰æ–¹æ¨¡æ¿ï¼‰ã€‚å¤§å¤šæ•°æƒ…å†µä¸‹ï¼Œåªåº”å½“åº”ç”¨äºŽè‡ªå®šä¹‰é€‰é¡¹ï¼Œå°±æƒ³ä¸Šé¢ç¤ºä¾‹ä¸€æ ·ï¼Œ
+    ä¹Ÿå¯ä»¥å°†å…¶ä½œä¸ºplugins ä»¥å…é‡å¤åº”ç”¨
 
-## ×Ô¶¨ÒåÑ¡Ïî»ìºÏ²ßÂÔ
+## è‡ªå®šä¹‰é€‰é¡¹æ··åˆç­–ç•¥
 
-    ×Ô¶¨ÒåÑ¡Ïî½«Ê¹ÓÃÄ¬ÈÏ²ßÂÔ£¬¼´¼òµ¥µÄ¸²¸ÇÒÑÓÐÖµ¡£Èç¹ûÏëÈÃ×Ô¶¨ÒåÑ¡ÏîÒÔ×Ô¶¨ÒåÂß¼­»ìºÏ£¬¿ÉÒÔÏòVue.config.optionMergeStrategies Ìí¼ÓÒ»¸öº¯Êý
+    è‡ªå®šä¹‰é€‰é¡¹å°†ä½¿ç”¨é»˜è®¤ç­–ç•¥ï¼Œå³ç®€å•çš„è¦†ç›–å·²æœ‰å€¼ã€‚å¦‚æžœæƒ³è®©è‡ªå®šä¹‰é€‰é¡¹ä»¥è‡ªå®šä¹‰é€»è¾‘æ··åˆï¼Œå¯ä»¥å‘Vue.config.optionMergeStrategies æ·»åŠ ä¸€ä¸ªå‡½æ•°
     Vue.config.optionMergeStrategies.myOption = function(toVal, fromVal) {
         //return mergedVal
     }
-    ¶ÔÓÚ´ó¶àÊý¶ÔÏóÑ¡Ïî£¬¿ÉÒÔÊ¹ÓÃmethods µÄºÏ²¢²ßÂÔ:
+    å¯¹äºŽå¤§å¤šæ•°å¯¹è±¡é€‰é¡¹ï¼Œå¯ä»¥ä½¿ç”¨methods çš„åˆå¹¶ç­–ç•¥:
     var strategies = Vue.config.optionMergeStrategids
     strategies.myOption = strategies.methods
     
-    ¸ü¶à¸ß¼¶µÄÀý×Ó¿ÉÒÔÔÚ Vuex 1.xµÄ»ìºÏ²ßÂÔÀïÕÒµ½:
+    æ›´å¤šé«˜çº§çš„ä¾‹å­å¯ä»¥åœ¨ Vuex 1.xçš„æ··åˆç­–ç•¥é‡Œæ‰¾åˆ°:
     const merge = Vue.config.optionMergeStrategies.computed
     Vue.config.optionMergeStrategies.vuex = function(toVal, fromVal) {
         if (!toVal) return fromVal
@@ -142,66 +142,66 @@
          }
     }
 
-## ²å¼þ
-²å¼þÍ¨³£»áÎªVueÌí¼ÓÈ«¾Ö¹¦ÄÜ¡£²å¼þµÄ·¶Î§Ã»ÓÐÏÞÖÆ--- Ò»°ãÓÐÏÂÃæ¼¸ÖÖ£º
-1. Ìí¼ÓÈ«¾Ö·½·¨»òÕßÊôÐÔ£¬Èç£ºvue-element2
-2. Ìí¼ÓÈ«¾Ö×ÊÔ´£ºÖ¸Áî/¹ýÂËÆ÷/¹ý¶ÈµÈ£¬Èçvue-touch
-3. Í¨¹ýÈ«¾Ömixmi·½·¨Ìí¼ÓÒ»Ð©×é¼þÑ¡Ïî£¬Èçvuex
-4. Ìí¼ÓVueÊµÀý·½·¨£¬Í¨¹ý°ÑËüÃÇÌí¼Óµ½Vue.prototype ÉÏÊµÏÖ
-5. Ò»¸ö¿â£¬Ìá¹©×Ô¼ºµÄapi£¬ Í¬Ê±Ìá¹©ÉÏÃæÌáµ½µÄÒ»¸ö»ò¶à¸ö¹¦ÄÜ£¬Èçvue-router
+## æ’ä»¶
+æ’ä»¶é€šå¸¸ä¼šä¸ºVueæ·»åŠ å…¨å±€åŠŸèƒ½ã€‚æ’ä»¶çš„èŒƒå›´æ²¡æœ‰é™åˆ¶--- ä¸€èˆ¬æœ‰ä¸‹é¢å‡ ç§ï¼š
+1. æ·»åŠ å…¨å±€æ–¹æ³•æˆ–è€…å±žæ€§ï¼Œå¦‚ï¼švue-element2
+2. æ·»åŠ å…¨å±€èµ„æºï¼šæŒ‡ä»¤/è¿‡æ»¤å™¨/è¿‡åº¦ç­‰ï¼Œå¦‚vue-touch
+3. é€šè¿‡å…¨å±€mixmiæ–¹æ³•æ·»åŠ ä¸€äº›ç»„ä»¶é€‰é¡¹ï¼Œå¦‚vuex
+4. æ·»åŠ Vueå®žä¾‹æ–¹æ³•ï¼Œé€šè¿‡æŠŠå®ƒä»¬æ·»åŠ åˆ°Vue.prototype ä¸Šå®žçŽ°
+5. ä¸€ä¸ªåº“ï¼Œæä¾›è‡ªå·±çš„apiï¼Œ åŒæ—¶æä¾›ä¸Šé¢æåˆ°çš„ä¸€ä¸ªæˆ–å¤šä¸ªåŠŸèƒ½ï¼Œå¦‚vue-router
 
-Vue.js µÄ²å¼þÓ¦µ±ÓÐÒ»¸ö¹«¿ª·½·¨ install ¡£Õâ¸ö·½·¨µÄµÚÒ»¸ö²ÎÊýÊÇVue¹¹ÔìÆ÷£¬µÚ¶þ¸ö²ÎÊýÊÇÒ»¸ö¿ÉÑ¡µÄÑ¡Ïî¶ÔÏó£º
+Vue.js çš„æ’ä»¶åº”å½“æœ‰ä¸€ä¸ªå…¬å¼€æ–¹æ³• install ã€‚è¿™ä¸ªæ–¹æ³•çš„ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯Vueæž„é€ å™¨ï¼Œç¬¬äºŒä¸ªå‚æ•°æ˜¯ä¸€ä¸ªå¯é€‰çš„é€‰é¡¹å¯¹è±¡ï¼š
     
         MyPlugin.install = function (Vue, options) {
-            //1. Ìí¼ÓÈ«¾Ö·½·¨»òÊôÐÔ
+            //1. æ·»åŠ å…¨å±€æ–¹æ³•æˆ–å±žæ€§
             Vue.myGlobalMethod = function() {
-                //Âß¼­...
+                //é€»è¾‘...
             }
-            //2. Ìí¼ÓÈ«¾Ö×ÊÔ´
+            //2. æ·»åŠ å…¨å±€èµ„æº
             Vue.directive('my-directive', {
                 bind (el, binding, vnode, oldVnode) {
-                    //Âß¼­
+                    //é€»è¾‘
                 }
             })
-            //3. ×¢Èë×é¼þ
+            //3. æ³¨å…¥ç»„ä»¶
             Vue.mixin({
                created: function() {
-                //Âß¼­ ...
+                //é€»è¾‘ ...
                }
             })
-            //4.Ìí¼ÓÊµÀý·½·¨
+            //4.æ·»åŠ å®žä¾‹æ–¹æ³•
             Vue.prototype.$myMethod = function (options) {
-                // Âß¼­
+                // é€»è¾‘
             } 
         }
         
-[Ê¹ÓÃ²å¼þ](https://github.com/vuejs/awesome-vue#libraries--plugins)
+[ä½¿ç”¨æ’ä»¶](https://github.com/vuejs/awesome-vue#libraries--plugins)
     
-    Í¨¹ýÈ«¾Ö·½·¨ Vue.use() Ê¹ÓÃ²å¼þ
+    é€šè¿‡å…¨å±€æ–¹æ³• Vue.use() ä½¿ç”¨æ’ä»¶
     //Vue.use(MyPlugin)
-    Ò²¿ÉÒÔ´«ÈëÒ»Ñ¡Ïî¶ÔÏó£º
+    ä¹Ÿå¯ä»¥ä¼ å…¥ä¸€é€‰é¡¹å¯¹è±¡ï¼š
     Vue.ues(MyPlugin, { someOption: true })
-    Vue.use »á×Ô¶¯×èÖ¹×¢²áÏàÍ¬µÄ²å¼þ¶à´Î £¬½ìÊ±Ö»»á×¢²áÒ»´Î²å¼þ¡£
-    Ò»Ð©²å¼þ£¬ Èç vue-router Èç¹ûÊÇÈ«¾Ö±äÁ¿Ôò×Ô¶¯µ÷ÓÃ¡¡Vue.sue(). ²»¹ýÔÚÄ£¿é»·¾³ÖÐÓ¦Ê¼ÖÕÏÔÊ¾µ÷ÓÃ Vue.use():
-    //Í¨¹ý Browserify »ò Webpack Ê¹ÓÃ CommonJS ¼æÈÝÄ£¿é
+    Vue.use ä¼šè‡ªåŠ¨é˜»æ­¢æ³¨å†Œç›¸åŒçš„æ’ä»¶å¤šæ¬¡ ï¼Œå±Šæ—¶åªä¼šæ³¨å†Œä¸€æ¬¡æ’ä»¶ã€‚
+    ä¸€äº›æ’ä»¶ï¼Œ å¦‚ vue-router å¦‚æžœæ˜¯å…¨å±€å˜é‡åˆ™è‡ªåŠ¨è°ƒç”¨ã€€Vue.sue(). ä¸è¿‡åœ¨æ¨¡å—çŽ¯å¢ƒä¸­åº”å§‹ç»ˆæ˜¾ç¤ºè°ƒç”¨ Vue.use():
+    //é€šè¿‡ Browserify æˆ– Webpack ä½¿ç”¨ CommonJS å…¼å®¹æ¨¡å—
     var Vue = require('vue')
     var VueRouter = require('vue-router')
-    //²»ÒªÍüÁËµ÷ÓÃ´Ë·½·¨
+    //ä¸è¦å¿˜äº†è°ƒç”¨æ­¤æ–¹æ³•
     Vue.use(VueRouter)
-    awesome-vue ¼¯ºÏÁËÀ´×ÔÉçÇø¹±Ï×µÄÊýÒÔÇ§¼ÆµÄ²å¼þºÍ¿â¡£ 
+    awesome-vue é›†åˆäº†æ¥è‡ªç¤¾åŒºè´¡çŒ®çš„æ•°ä»¥åƒè®¡çš„æ’ä»¶å’Œåº“ã€‚ 
     
     
-## µ¥ÎÄ¼þ×é¼þ
+## å•æ–‡ä»¶ç»„ä»¶
 
-ÔÚºÜ¶àVueÏîÄ¿ÖÐ£¬ÎÒÃÇÊ¹ÓÃ Vue.component À´¶¨ÒåÈ«¾Ö×é¼þ£¬½ô½Ó×ÅÓÃ new Vue({ el: '#container '}) ÔÚÃ¿¸öÒ³ÃæÄÚÖ¸¶¨Ò»¸öÈÝÆ÷ÔªËØ¡£
-ÕâÖÖ·½Ê½ÔÚºÜ¶àÖÐÐ¡¹æÄ£µÄÏîÄ¿ÖÐÔË×÷µÄºÜºÃ£¬ÔÚÕâÐ©ÏîÄ¿Àï JavaScript Ö»±»ÓÃÀ´¼ÓÇ¿ÌØ¶¨µÄÊÓÍ¼¡£µ«µ±ÔÚ¸ü¸´ÔÓµÄÏîÄ¿ÖÐ£¬»òÕßÄãµÄÇ°¶ËÍêÈ«ÓÉ JavaScript Çý¶¯µÄÊ±ºò£¬
-ÏÂÃæÕâÐ©È±µã½«±äµÃ·Ç³£Ã÷ÏÔ£º
-È«¾Ö¶¨Òå(Global definitions) Ç¿ÖÆÒªÇóÃ¿¸ö component ÖÐµÄÃüÃû²»µÃÖØ¸´
-×Ö·û´®Ä£°å(String templates) È±·¦Óï·¨¸ßÁÁ£¬ÔÚ HTML ÓÐ¶àÐÐµÄÊ±ºò£¬ÐèÒªÓÃµ½³óÂªµÄ \
-²»Ö§³ÖCSS(No CSS support) ÒâÎ¶×Åµ± HTML ºÍ JavaScript ×é¼þ»¯Ê±£¬CSS Ã÷ÏÔ±»ÒÅÂ©
-Ã»ÓÐ¹¹½¨²½Öè(No build step) ÏÞÖÆÖ»ÄÜÊ¹ÓÃ HTML ºÍ ES5 JavaScript, ¶ø²»ÄÜÊ¹ÓÃÔ¤´¦ÀíÆ÷£¬Èç Pug (formerly Jade) ºÍ Babel
-ÎÄ¼þÀ©Õ¹ÃûÎª .vue µÄ single-file components(µ¥ÎÄ¼þ×é¼þ) ÎªÒÔÉÏËùÓÐÎÊÌâÌá¹©ÁË½â¾ö·½·¨£¬²¢ÇÒ»¹¿ÉÒÔÊ¹ÓÃ Webpack »ò Browserify µÈ¹¹½¨¹¤¾ß¡£
-ÕâÊÇÒ»¸öÎÄ¼þÃûÎª Hello.vue µÄ¼òµ¥ÊµÀý£º
+åœ¨å¾ˆå¤šVueé¡¹ç›®ä¸­ï¼Œæˆ‘ä»¬ä½¿ç”¨ Vue.component æ¥å®šä¹‰å…¨å±€ç»„ä»¶ï¼Œç´§æŽ¥ç€ç”¨ new Vue({ el: '#container '}) åœ¨æ¯ä¸ªé¡µé¢å†…æŒ‡å®šä¸€ä¸ªå®¹å™¨å…ƒç´ ã€‚
+è¿™ç§æ–¹å¼åœ¨å¾ˆå¤šä¸­å°è§„æ¨¡çš„é¡¹ç›®ä¸­è¿ä½œçš„å¾ˆå¥½ï¼Œåœ¨è¿™äº›é¡¹ç›®é‡Œ JavaScript åªè¢«ç”¨æ¥åŠ å¼ºç‰¹å®šçš„è§†å›¾ã€‚ä½†å½“åœ¨æ›´å¤æ‚çš„é¡¹ç›®ä¸­ï¼Œæˆ–è€…ä½ çš„å‰ç«¯å®Œå…¨ç”± JavaScript é©±åŠ¨çš„æ—¶å€™ï¼Œ
+ä¸‹é¢è¿™äº›ç¼ºç‚¹å°†å˜å¾—éžå¸¸æ˜Žæ˜¾ï¼š
+å…¨å±€å®šä¹‰(Global definitions) å¼ºåˆ¶è¦æ±‚æ¯ä¸ª component ä¸­çš„å‘½åä¸å¾—é‡å¤
+å­—ç¬¦ä¸²æ¨¡æ¿(String templates) ç¼ºä¹è¯­æ³•é«˜äº®ï¼Œåœ¨ HTML æœ‰å¤šè¡Œçš„æ—¶å€™ï¼Œéœ€è¦ç”¨åˆ°ä¸‘é™‹çš„ \
+ä¸æ”¯æŒCSS(No CSS support) æ„å‘³ç€å½“ HTML å’Œ JavaScript ç»„ä»¶åŒ–æ—¶ï¼ŒCSS æ˜Žæ˜¾è¢«é—æ¼
+æ²¡æœ‰æž„å»ºæ­¥éª¤(No build step) é™åˆ¶åªèƒ½ä½¿ç”¨ HTML å’Œ ES5 JavaScript, è€Œä¸èƒ½ä½¿ç”¨é¢„å¤„ç†å™¨ï¼Œå¦‚ Pug (formerly Jade) å’Œ Babel
+æ–‡ä»¶æ‰©å±•åä¸º .vue çš„ single-file components(å•æ–‡ä»¶ç»„ä»¶) ä¸ºä»¥ä¸Šæ‰€æœ‰é—®é¢˜æä¾›äº†è§£å†³æ–¹æ³•ï¼Œå¹¶ä¸”è¿˜å¯ä»¥ä½¿ç”¨ Webpack æˆ– Browserify ç­‰æž„å»ºå·¥å…·ã€‚
+è¿™æ˜¯ä¸€ä¸ªæ–‡ä»¶åä¸º Hello.vue çš„ç®€å•å®žä¾‹ï¼š
 
     <template>
         <p>{{ greeting }} World! </p>
@@ -222,15 +222,15 @@ Vue.js µÄ²å¼þÓ¦µ±ÓÐÒ»¸ö¹«¿ª·½·¨ install ¡£Õâ¸ö·½·¨µÄµÚÒ»¸ö²ÎÊýÊÇVue¹¹ÔìÆ÷£¬µÚ¶þ¸
         }
     </script>
 
-ÕâÐ©ÌØ¶¨µÄÓïÑÔÖ»ÊÇÀý×Ó£¬Äã¿ÉÒÔÖ»ÊÇ¼òµ¥µØÊ¹ÓÃ Babel£¬TypeScript£¬SCSS£¬PostCSS - »òÕßÆäËûÈÎºÎÄÜ¹»°ïÖúÄãÌá¸ßÉú²úÁ¦µÄÔ¤´¦ÀíÆ÷¡£
+è¿™äº›ç‰¹å®šçš„è¯­è¨€åªæ˜¯ä¾‹å­ï¼Œä½ å¯ä»¥åªæ˜¯ç®€å•åœ°ä½¿ç”¨ Babelï¼ŒTypeScriptï¼ŒSCSSï¼ŒPostCSS - æˆ–è€…å…¶ä»–ä»»ä½•èƒ½å¤Ÿå¸®åŠ©ä½ æé«˜ç”Ÿäº§åŠ›çš„é¢„å¤„ç†å™¨ã€‚
 
-# Éú²ú»·¾³²¿Êð
+# ç”Ÿäº§çŽ¯å¢ƒéƒ¨ç½²
 
-## É¾³ý¾¯¸æ
-ÎªÁË¼õÐ¡ÎÄ¼þ´óÐ¡£¬Vue ¾«¼ò¶ÀÁ¢°æÒÑ¾­É¾³ýÁËËùÓÐ¾¯¸æ£¬µ«ÊÇµ±ÄãÊ¹ÓÃ Webpack »ò Broswerify µÈ¹¤¾ßÊ±£¬ÄãÐèÒªÒ»Ð©¶îÍâµÄÅäÖÃÊµÏÖÕâµã¡£
+## åˆ é™¤è­¦å‘Š
+ä¸ºäº†å‡å°æ–‡ä»¶å¤§å°ï¼ŒVue ç²¾ç®€ç‹¬ç«‹ç‰ˆå·²ç»åˆ é™¤äº†æ‰€æœ‰è­¦å‘Šï¼Œä½†æ˜¯å½“ä½ ä½¿ç”¨ Webpack æˆ– Broswerify ç­‰å·¥å…·æ—¶ï¼Œä½ éœ€è¦ä¸€äº›é¢å¤–çš„é…ç½®å®žçŽ°è¿™ç‚¹ã€‚
 
 ## Webpack
-Ê¹ÓÃWebpack µÄDefinePlugin À´Ö¸¶¨Éú²ú»·¾³£¬ÒÔ±ãÔÚÑ¹ËõÊ±¿ÉÒÔÈÃUglifyJS ×Ô¶¯É¾³ý´úÂë¿éÄÚµÄ¾¯¸æÓï¾ä¡£ÀýÈçÅäÖÃ£º
+ä½¿ç”¨Webpack çš„DefinePlugin æ¥æŒ‡å®šç”Ÿäº§çŽ¯å¢ƒï¼Œä»¥ä¾¿åœ¨åŽ‹ç¼©æ—¶å¯ä»¥è®©UglifyJS è‡ªåŠ¨åˆ é™¤ä»£ç å—å†…çš„è­¦å‘Šè¯­å¥ã€‚ä¾‹å¦‚é…ç½®ï¼š
 
     var webpack = require('webpack')
     module.exports = {
@@ -252,30 +252,30 @@ Vue.js µÄ²å¼þÓ¦µ±ÓÐÒ»¸ö¹«¿ª·½·¨ install ¡£Õâ¸ö·½·¨µÄµÚÒ»¸ö²ÎÊýÊÇVue¹¹ÔìÆ÷£¬µÚ¶þ¸
 
 ## Browerify
 
-    ÔËÐÐ´ò°üÃüÁî£¬ ÉèÖÃ NODE_ENV Îª"production"¡£ µÈÓÚ¸æËßvueify ±ÜÃâÒýÈëÈÈÖØÔØºÍ¿ª·¢Ïà¹Ø´úÂë¡£
-    Ê¹ÓÃÒ»¸öÈ«¾ÖµÄ envify ×ª»»ÄãµÄ bundle ÎÄ¼þ¡£ Õâ¿ÉÒÔ¾«¼òµô°üº¬ÔÚVue Ô´ÂëÖÐËùÓÐ»·¾³±äÁ¿Ìõ¼þÏà¹Ø´úÂëÄÚµÄ¾¯¸æÓï¾ä¡£ÀýÈç£º
+    è¿è¡Œæ‰“åŒ…å‘½ä»¤ï¼Œ è®¾ç½® NODE_ENV ä¸º"production"ã€‚ ç­‰äºŽå‘Šè¯‰vueify é¿å…å¼•å…¥çƒ­é‡è½½å’Œå¼€å‘ç›¸å…³ä»£ç ã€‚
+    ä½¿ç”¨ä¸€ä¸ªå…¨å±€çš„ envify è½¬æ¢ä½ çš„ bundle æ–‡ä»¶ã€‚ è¿™å¯ä»¥ç²¾ç®€æŽ‰åŒ…å«åœ¨Vue æºç ä¸­æ‰€æœ‰çŽ¯å¢ƒå˜é‡æ¡ä»¶ç›¸å…³ä»£ç å†…çš„è­¦å‘Šè¯­å¥ã€‚ä¾‹å¦‚ï¼š
     NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
-    Ê¹ÓÃ vueify ÖÐ°üº¬µÄ extract-css ²å¼þ£¬ÌáÈ¡ÑùÊ½µ½µ¥¶ÀµÄcssÎÄ¼þ¡£
+    ä½¿ç”¨ vueify ä¸­åŒ…å«çš„ extract-css æ’ä»¶ï¼Œæå–æ ·å¼åˆ°å•ç‹¬çš„cssæ–‡ä»¶ã€‚
     NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o build.css ] -e main.js | uglifyjs -c -m > build.js
 
-## ¸ú×ÙÔËÐÐÊ±´íÎó
+## è·Ÿè¸ªè¿è¡Œæ—¶é”™è¯¯
 
-    Èç¹ûÔÚ×é¼þäÖÈ¾Ê±³öÏÖÔËÐÐ´íÎó£¬´íÎó½«»á±»´«µÝÖÁÈ«¾Ö Vue.config.errorHandler ÅäÖÃº¯Êý£¨Èç¹ûÒÑÉèÖÃ£©¡£
-    ÀûÓÃÕâ¸ö¹³×Óº¯ÊýºÍ´íÎó¸ú×Ù·þÎñ£¨Èç Sentry, ËüÎª Vue Ìá¹©¹Ù·½¼¯³É£©£¬ ¿ÉÄÜÊÇ¸ö²»´íµÄ×¢Òâ¡£
+    å¦‚æžœåœ¨ç»„ä»¶æ¸²æŸ“æ—¶å‡ºçŽ°è¿è¡Œé”™è¯¯ï¼Œé”™è¯¯å°†ä¼šè¢«ä¼ é€’è‡³å…¨å±€ Vue.config.errorHandler é…ç½®å‡½æ•°ï¼ˆå¦‚æžœå·²è®¾ç½®ï¼‰ã€‚
+    åˆ©ç”¨è¿™ä¸ªé’©å­å‡½æ•°å’Œé”™è¯¯è·Ÿè¸ªæœåŠ¡ï¼ˆå¦‚ Sentry, å®ƒä¸º Vue æä¾›å®˜æ–¹é›†æˆï¼‰ï¼Œ å¯èƒ½æ˜¯ä¸ªä¸é”™çš„æ³¨æ„ã€‚
     
-## ÌáÈ¡css
+## æå–css
 
-    Ê¹ÓÃµ¥ÎÄ¼þ×é¼þÊ±£¬<style> ±êÇ©ÔÚ¿ª·¢ÔËÐÐ¹ý³ÌÖÐ»á±»¶¯Ì¬ÊµÊ±×¢Èë¡£ ÔÚÉú²ú»·¾³ÖÐ£¬Äã¿ÉÄÜÐèÒª´ÓËùÓÐ×é¼þÖÐÌáÈ¡ÑùÊ½µ½µ¥¶ÀµÄcssÎÄ¼þÖÐ¡£
-    ÓÐ¹ØÈçºÎÊµÏÖµÄÏêÏ¸ÐÅÏ¢£¬Çë²éÔÄ vue-loader ºÍ vueify ÏìÓ¦ÎÄµµ
-    vue-cli ÒÑ¾­ÅäÖÃºÃÁË¹Ù·½µÄ webpack Ä£°å 
+    ä½¿ç”¨å•æ–‡ä»¶ç»„ä»¶æ—¶ï¼Œ<style> æ ‡ç­¾åœ¨å¼€å‘è¿è¡Œè¿‡ç¨‹ä¸­ä¼šè¢«åŠ¨æ€å®žæ—¶æ³¨å…¥ã€‚ åœ¨ç”Ÿäº§çŽ¯å¢ƒä¸­ï¼Œä½ å¯èƒ½éœ€è¦ä»Žæ‰€æœ‰ç»„ä»¶ä¸­æå–æ ·å¼åˆ°å•ç‹¬çš„cssæ–‡ä»¶ä¸­ã€‚
+    æœ‰å…³å¦‚ä½•å®žçŽ°çš„è¯¦ç»†ä¿¡æ¯ï¼Œè¯·æŸ¥é˜… vue-loader å’Œ vueify å“åº”æ–‡æ¡£
+    vue-cli å·²ç»é…ç½®å¥½äº†å®˜æ–¹çš„ webpack æ¨¡æ¿ 
 
-# Â·ÓÉ 
-## ¹Ù·½Â·ÓÉ
-¶ÔÓÚ´ó¶àÊýµ¥Ò³ÃæÓ¦ÓÃ£¬¶¼ÍÆ¼öÊ¹ÓÃ¹Ù·½Ö§³ÖµÄvue-router¿â¡£ ¸ü¶àÏ¸½Ú¿ÉÒÔ¿´vue-router ÎÄµµ¡£
+# è·¯ç”± 
+## å®˜æ–¹è·¯ç”±
+å¯¹äºŽå¤§å¤šæ•°å•é¡µé¢åº”ç”¨ï¼Œéƒ½æŽ¨èä½¿ç”¨å®˜æ–¹æ”¯æŒçš„vue-routeråº“ã€‚ æ›´å¤šç»†èŠ‚å¯ä»¥çœ‹vue-router æ–‡æ¡£ã€‚
 
-## ´ÓÁã¿ªÊ¼Ñ§Ï°¼òµ¥µÄÂ·ÓÉ
+## ä»Žé›¶å¼€å§‹å­¦ä¹ ç®€å•çš„è·¯ç”±
 
-    Èç¹ûÖ»ÐèÒª·Ç³£¼òµ¥µÄÂ·ÓÉ¶ø²»ÐèÒªÒýÈëÕû¸öÂ·ÓÉ¿â£¬¿ÉÒÔ¶¯Ì¬µÄäÖÈ¾Ò»¸öÒ³Ãæ¼¶µÄ×é¼þ £¬ÏñÕâÑù£º
+    å¦‚æžœåªéœ€è¦éžå¸¸ç®€å•çš„è·¯ç”±è€Œä¸éœ€è¦å¼•å…¥æ•´ä¸ªè·¯ç”±åº“ï¼Œå¯ä»¥åŠ¨æ€çš„æ¸²æŸ“ä¸€ä¸ªé¡µé¢çº§çš„ç»„ä»¶ ï¼Œåƒè¿™æ ·ï¼š
     const NotFound = { template: '<p>Page not found</p>' }
     const Home = {template: '<p>home page</p>'}
     const About = {template: '<p>about page</p>'}
@@ -296,19 +296,19 @@ Vue.js µÄ²å¼þÓ¦µ±ÓÐÒ»¸ö¹«¿ª·½·¨ install ¡£Õâ¸ö·½·¨µÄµÚÒ»¸ö²ÎÊýÊÇVue¹¹ÔìÆ÷£¬µÚ¶þ¸
         render (h) { return h(this.ViewComponent) }
     })
     
-½áºÏ HTML5 History API , Äã¿ÉÒÔ½¨Á¢Ò»¸ö·Ç³£»ù±¾µ«ÊÇ¹¦ÄÜÆëÈ«µÄ¿Í»§¶ËÂ·ÓÉÆ÷¡£¿ÉÒÔÖ±½Ó²é¿´ [ÊµÀýÓ¦ÓÃ](https://github.com/chrisvfritz/vue-2.0-simple-routing-example)
+ç»“åˆ HTML5 History API , ä½ å¯ä»¥å»ºç«‹ä¸€ä¸ªéžå¸¸åŸºæœ¬ä½†æ˜¯åŠŸèƒ½é½å…¨çš„å®¢æˆ·ç«¯è·¯ç”±å™¨ã€‚å¯ä»¥ç›´æŽ¥æŸ¥çœ‹ [å®žä¾‹åº”ç”¨](https://github.com/chrisvfritz/vue-2.0-simple-routing-example)
 
-## ÕûºÏµÚÈý·½Â·ÓÉ 
-Èç¹ûÓÐ·Ç³£Ï²»¶µÄµÚÈý·½Â·ÓÉ£¬Èç[Page.js](https://github.com/visionmedia/page.js)»òÕß [Director](https://github.com/flatiron/director), ÕûºÏºÜ[¼òµ¥](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs)¡£ ÕâÓÐ¸öÓÃÁËPage.jsµÄ[¸´ÔÓÊ¾Àý](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) ¡£
+## æ•´åˆç¬¬ä¸‰æ–¹è·¯ç”± 
+å¦‚æžœæœ‰éžå¸¸å–œæ¬¢çš„ç¬¬ä¸‰æ–¹è·¯ç”±ï¼Œå¦‚[Page.js](https://github.com/visionmedia/page.js)æˆ–è€… [Director](https://github.com/flatiron/director), æ•´åˆå¾ˆ[ç®€å•](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/compare/master...pagejs)ã€‚ è¿™æœ‰ä¸ªç”¨äº†Page.jsçš„[å¤æ‚ç¤ºä¾‹](https://github.com/chrisvfritz/vue-2.0-simple-routing-example/tree/pagejs) ã€‚
 
-# ×´Ì¬¹ÜÀí
-## Àà Flux ×´Ì¬¹ÜÀíµÄ¹Ù·½ÊµÏÖ
-ÓÉÓÚ¶à¸ö×´Ì¬·ÖÉ¢µÄ¿çÔ½ÔÚÐí¶à×é¼þºÍ½»»¥¸÷¸ö½ÇÂä£¬´óÐÍÓ¦ÓÃ¸´ÔÓ¶ÈÒ²¾­³£Öð½¥Ôö¼Ó¡£ÎªÁË½â¾öÕâ¸öÎÊÌâ £¬ VueÌá¹© vuex£º ÎÒÃÇÓÐÊÜµ½ ElmÆô·¢µÄ×´Ì¬¹ÜÀí¿â .
-[vuex](https://github.com/vuejs/vuex) ÉõÖÁ¼¯³Éµ½ [vue-devtools](https://github.com/vuejs/vue-devtools),ÎÞÐèÅäÖÃ¼´¿É·ÃÎÊÊ±¹âÂÃÐÐ¡£(Ã»Àí½âÉ¶½ÐÊ±¹âÂÃÐÐ£¬Ò²ÊÇ×íÁË)
+# çŠ¶æ€ç®¡ç†
+## ç±» Flux çŠ¶æ€ç®¡ç†çš„å®˜æ–¹å®žçŽ°
+ç”±äºŽå¤šä¸ªçŠ¶æ€åˆ†æ•£çš„è·¨è¶Šåœ¨è®¸å¤šç»„ä»¶å’Œäº¤äº’å„ä¸ªè§’è½ï¼Œå¤§åž‹åº”ç”¨å¤æ‚åº¦ä¹Ÿç»å¸¸é€æ¸å¢žåŠ ã€‚ä¸ºäº†è§£å†³è¿™ä¸ªé—®é¢˜ ï¼Œ Vueæä¾› vuexï¼š æˆ‘ä»¬æœ‰å—åˆ° Elmå¯å‘çš„çŠ¶æ€ç®¡ç†åº“ .
+[vuex](https://github.com/vuejs/vuex) ç”šè‡³é›†æˆåˆ° [vue-devtools](https://github.com/vuejs/vue-devtools),æ— éœ€é…ç½®å³å¯è®¿é—®æ—¶å…‰æ—…è¡Œã€‚(æ²¡ç†è§£å•¥å«æ—¶å…‰æ—…è¡Œï¼Œä¹Ÿæ˜¯é†‰äº†)
 
-## ¼òµ¥×´Ì¬¹ÜÀí Æð²½Ê¹ÓÃ
-¾­³£ºöÂÔµÄÊÇ£¬Vue Ó¦ÓÃÖÐÔ­Ê¼ Êý¾Ý ¶ÔÏóµÄÊµ¼ÊÀ´Ô´ - µ±·ÃÎÊÊý¾Ý¶ÔÏóÊ±£¬ Ò»¸öVueÊµÀýÖ»ÊÇ¼òµ¥µÄ´úÀí·ÃÎÊ¡£
-ËùÒÔ£¬Èç¹ûÄãÓÐÒ»´¦ÐèÒª±»¶à¸öÊµÀý¹²ÏíµÄ×´Ì¬£¬¿ÉÒÔ¼òµ¥µÄÍ¨¹ýÎ¬»¤Ò»·ÝÊý¾ÝÀ´ÊµÏÖ¹²Ïí¡£
+## ç®€å•çŠ¶æ€ç®¡ç† èµ·æ­¥ä½¿ç”¨
+ç»å¸¸å¿½ç•¥çš„æ˜¯ï¼ŒVue åº”ç”¨ä¸­åŽŸå§‹ æ•°æ® å¯¹è±¡çš„å®žé™…æ¥æº - å½“è®¿é—®æ•°æ®å¯¹è±¡æ—¶ï¼Œ ä¸€ä¸ªVueå®žä¾‹åªæ˜¯ç®€å•çš„ä»£ç†è®¿é—®ã€‚
+æ‰€ä»¥ï¼Œå¦‚æžœä½ æœ‰ä¸€å¤„éœ€è¦è¢«å¤šä¸ªå®žä¾‹å…±äº«çš„çŠ¶æ€ï¼Œå¯ä»¥ç®€å•çš„é€šè¿‡ç»´æŠ¤ä¸€ä»½æ•°æ®æ¥å®žçŽ°å…±äº«ã€‚
 
     const sourceOfTruth = {}
     const vmA = new Vue({
@@ -317,9 +317,9 @@ Vue.js µÄ²å¼þÓ¦µ±ÓÐÒ»¸ö¹«¿ª·½·¨ install ¡£Õâ¸ö·½·¨µÄµÚÒ»¸ö²ÎÊýÊÇVue¹¹ÔìÆ÷£¬µÚ¶þ¸
     const vmB = new Vue({
         data: sourceOfTruth
     })
-ÏÖÔÚµ± sourceOfTruth ·¢Éú±ä»¯£¬ vmA ºÍvmB ¶¼½«×Ô¶¯¸üÐÂÒýÓÃËüÃÇµÄÊÓÍ¼¡£×Ó×é¼þµÄÃ¿¸öÊµÀýÒ²»áÍ¨¹ý this.$root.$data È¥·ÃÎÊ¡£
-ÏÖÔÚÎÒÃÇÓÐÁËÎ¨Ò»µÄÊµÀýÀ´Ô´£¬µ«ÊÇ£¬µ÷ÊÔ½«»á±ä³ÉØ¬ÃÎ¡£ÈÎºÎÊ±¼ä£¬ÎÒÃÇÓ¦ÓÃÖÐµÄÈÎºÎ²¿·Ö£¬ÔÚÈÎºÎÊý¾Ý¸Ä±äºó£¬¶¼²»»áÁôÏÂ±ä¸ü¹ýµÄ¼ÇÂ¼¡£
-ÎªÁË½â¾öÕâ¸öÎÊÌâ£¬ÎÒÃÇ²ÉÓÃÒ»¸ö¼òµ¥µÄ store Ä£Ê½£º
+çŽ°åœ¨å½“ sourceOfTruth å‘ç”Ÿå˜åŒ–ï¼Œ vmA å’ŒvmB éƒ½å°†è‡ªåŠ¨æ›´æ–°å¼•ç”¨å®ƒä»¬çš„è§†å›¾ã€‚å­ç»„ä»¶çš„æ¯ä¸ªå®žä¾‹ä¹Ÿä¼šé€šè¿‡ this.$root.$data åŽ»è®¿é—®ã€‚
+çŽ°åœ¨æˆ‘ä»¬æœ‰äº†å”¯ä¸€çš„å®žä¾‹æ¥æºï¼Œä½†æ˜¯ï¼Œè°ƒè¯•å°†ä¼šå˜æˆå™©æ¢¦ã€‚ä»»ä½•æ—¶é—´ï¼Œæˆ‘ä»¬åº”ç”¨ä¸­çš„ä»»ä½•éƒ¨åˆ†ï¼Œåœ¨ä»»ä½•æ•°æ®æ”¹å˜åŽï¼Œéƒ½ä¸ä¼šç•™ä¸‹å˜æ›´è¿‡çš„è®°å½•ã€‚
+ä¸ºäº†è§£å†³è¿™ä¸ªé—®é¢˜ï¼Œæˆ‘ä»¬é‡‡ç”¨ä¸€ä¸ªç®€å•çš„ store æ¨¡å¼ï¼š
 
     var store = {
         debug: true,
@@ -336,11 +336,11 @@ Vue.js µÄ²å¼þÓ¦µ±ÓÐÒ»¸ö¹«¿ª·½·¨ install ¡£Õâ¸ö·½·¨µÄµÚÒ»¸ö²ÎÊýÊÇVue¹¹ÔìÆ÷£¬µÚ¶þ¸
         } 
     }
 
-ÐèÒª×¢Òâ£¬ËùÓÐ store ÖÐ state µÄ¸Ä±ä£¬¶¼·ÅÖÃÔÚ store ×ÔÉíµÄ action ÖÐÈ¥¹ÜÀí¡£
-ÕâÖÖ¼¯ÖÐÊ½×´Ì¬¹ÜÀíÄÜ¹»±»¸üÈÝÒ×µØÀí½âÄÄÖÖÀàÐÍµÄ mutation ½«»á·¢Éú£¬ÒÔ¼°ËüÃÇÊÇÈçºÎ±»´¥·¢¡£
-µ±´íÎó³öÏÖÊ±£¬ÎÒÃÇÏÖÔÚÒ²»áÓÐÒ»¸ö log ¼ÇÂ¼ bug Ö®Ç°·¢ÉúÁËÊ²Ã´¡£
+éœ€è¦æ³¨æ„ï¼Œæ‰€æœ‰ store ä¸­ state çš„æ”¹å˜ï¼Œéƒ½æ”¾ç½®åœ¨ store è‡ªèº«çš„ action ä¸­åŽ»ç®¡ç†ã€‚
+è¿™ç§é›†ä¸­å¼çŠ¶æ€ç®¡ç†èƒ½å¤Ÿè¢«æ›´å®¹æ˜“åœ°ç†è§£å“ªç§ç±»åž‹çš„ mutation å°†ä¼šå‘ç”Ÿï¼Œä»¥åŠå®ƒä»¬æ˜¯å¦‚ä½•è¢«è§¦å‘ã€‚
+å½“é”™è¯¯å‡ºçŽ°æ—¶ï¼Œæˆ‘ä»¬çŽ°åœ¨ä¹Ÿä¼šæœ‰ä¸€ä¸ª log è®°å½• bug ä¹‹å‰å‘ç”Ÿäº†ä»€ä¹ˆã€‚
 
-´ËÍâ£¬Ã¿¸öÊµÀý/×é¼þÈÔÈ»¿ÉÒÔÓµÓÐºÍ¹ÜÀí×Ô¼ºµÄË½ÓÐ×´Ì¬£º
+æ­¤å¤–ï¼Œæ¯ä¸ªå®žä¾‹/ç»„ä»¶ä»ç„¶å¯ä»¥æ‹¥æœ‰å’Œç®¡ç†è‡ªå·±çš„ç§æœ‰çŠ¶æ€ï¼š
 
     var vmA = new Vue({
       data: {
@@ -356,15 +356,15 @@ Vue.js µÄ²å¼þÓ¦µ±ÓÐÒ»¸ö¹«¿ª·½·¨ install ¡£Õâ¸ö·½·¨µÄµÚÒ»¸ö²ÎÊýÊÇVue¹¹ÔìÆ÷£¬µÚ¶þ¸
     })
 
 
-# µ¥Ôª²âÊÔ
+# å•å…ƒæµ‹è¯•
 
 
-ÈÎºÎ¼æÈÝ»ùÓÚÄ£¿éµÄ¹¹½¨ÏµÍ³¶¼¿ÉÒÔÕý³£Ê¹ÓÃ£¬µ«Èç¹ûÄãÐèÒªÒ»¸ö¾ßÌåµÄ½¨Òé£¬¿ÉÒÔÊ¹ÓÃ [Karma](http://karma-runner.github.io/1.0/index.html) ½øÐÐ×Ô¶¯»¯²âÊÔ¡£
-ËüÓÐºÜ¶àÉçÇø°æµÄ²å¼þ£¬°üÀ¨¶Ô [Webpack](https://github.com/webpack/karma-webpack) ºÍ [Browserify](https://github.com/Nikku/karma-browserify) µÄÖ§³Ö¡£
-¸ü¶àÏêÏ¸µÄ°²×°²½Öè£¬Çë²Î¿¼¸÷ÏîÄ¿µÄ°²×°ÎÄµµ£¬Í¨¹ýÕâÐ© Karma ÅäÖÃµÄÀý×Ó¿ÉÒÔ¿ìËÙ°ïÖúÄãÉÏÊÖ£¨[Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) ÅäÖÃ£¬[Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) ÅäÖÃ£©¡£
+ä»»ä½•å…¼å®¹åŸºäºŽæ¨¡å—çš„æž„å»ºç³»ç»Ÿéƒ½å¯ä»¥æ­£å¸¸ä½¿ç”¨ï¼Œä½†å¦‚æžœä½ éœ€è¦ä¸€ä¸ªå…·ä½“çš„å»ºè®®ï¼Œå¯ä»¥ä½¿ç”¨ [Karma](http://karma-runner.github.io/1.0/index.html) è¿›è¡Œè‡ªåŠ¨åŒ–æµ‹è¯•ã€‚
+å®ƒæœ‰å¾ˆå¤šç¤¾åŒºç‰ˆçš„æ’ä»¶ï¼ŒåŒ…æ‹¬å¯¹ [Webpack](https://github.com/webpack/karma-webpack) å’Œ [Browserify](https://github.com/Nikku/karma-browserify) çš„æ”¯æŒã€‚
+æ›´å¤šè¯¦ç»†çš„å®‰è£…æ­¥éª¤ï¼Œè¯·å‚è€ƒå„é¡¹ç›®çš„å®‰è£…æ–‡æ¡£ï¼Œé€šè¿‡è¿™äº› Karma é…ç½®çš„ä¾‹å­å¯ä»¥å¿«é€Ÿå¸®åŠ©ä½ ä¸Šæ‰‹ï¼ˆ[Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) é…ç½®ï¼Œ[Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) é…ç½®ï¼‰ã€‚
     
-##¼òµ¥µÄ¶ÏÑÔ
-   ÔÚ²âÊÔ´úÂëµÄ½á¹¹·½Ãæ£¬Äã²»±ðÎªÁË¿É²âÊÔÔÚÄãµù×é¼þÖÐ×öÈÎºÎÌØÊâµÄ²Ù×÷£¬Ö»Òªµ¼³öÔ­Ê¼ÅäÖÃ¾Í¿ÉÒÔÁË£º
+##ç®€å•çš„æ–­è¨€
+   åœ¨æµ‹è¯•ä»£ç çš„ç»“æž„æ–¹é¢ï¼Œä½ ä¸åˆ«ä¸ºäº†å¯æµ‹è¯•åœ¨ä½ çˆ¹ç»„ä»¶ä¸­åšä»»ä½•ç‰¹æ®Šçš„æ“ä½œï¼Œåªè¦å¯¼å‡ºåŽŸå§‹é…ç½®å°±å¯ä»¥äº†ï¼š
    
        <template>
             <span>{{ message }}</sapn>
@@ -382,28 +382,28 @@ Vue.js µÄ²å¼þÓ¦µ±ÓÐÒ»¸ö¹«¿ª·½·¨ install ¡£Õâ¸ö·½·¨µÄµÚÒ»¸ö²ÎÊýÊÇVue¹¹ÔìÆ÷£¬µÚ¶þ¸
             }
        </script>
        
-       µ±²âÊÔµÄÊÇ×é¼þÊ±£¬ËùÒª×öµÄ¾ÍÊÇµ¼Èë¶ÔÏóºÍ Vue È»ºóÊ¹ÓÃÐí¶à³£¼ûµÄ¶ÏÑÔ£º
-       // µ¼Èë Vue.js ºÍ×é¼þ£¬½øÐÐ²âÊÔ
+       å½“æµ‹è¯•çš„æ˜¯ç»„ä»¶æ—¶ï¼Œæ‰€è¦åšçš„å°±æ˜¯å¯¼å…¥å¯¹è±¡å’Œ Vue ç„¶åŽä½¿ç”¨è®¸å¤šå¸¸è§çš„æ–­è¨€ï¼š
+       // å¯¼å…¥ Vue.js å’Œç»„ä»¶ï¼Œè¿›è¡Œæµ‹è¯•
        import Vue from 'vue'
        import MyComponent from 'path/to/MyComponent.vue'
-       // ÕâÀïÊÇÒ»Ð© Jasmine 2.0 µÄ²âÊÔ 
+       // è¿™é‡Œæ˜¯ä¸€äº› Jasmine 2.0 çš„æµ‹è¯• 
        describe('MyComponent', () => {
-            //¼ì²éÔ­Ê¼×é¼þÑ¡Ïî
+            //æ£€æŸ¥åŽŸå§‹ç»„ä»¶é€‰é¡¹
             it('has a create hook', () => {
                 expect(typeof MyComponent.created).toBe('function')
             })
-            //ÆÀ¹ÀÔ­Ê¼×é¼þÖÐÑ¡ÏîµÄº¯ÊýµÄ½á¹û
+            //è¯„ä¼°åŽŸå§‹ç»„ä»¶ä¸­é€‰é¡¹çš„å‡½æ•°çš„ç»“æžœ
             it('sets the correct default data', () => {
                expect(typeof MyComponent.data).toBe('function')
                const defaultData = MyComponent.data()
                expect(defaultData.message).toBe('hello!')
             })
-             // ¼ì²émountÖÐµÄ×é¼þÊµÀý
+             // æ£€æŸ¥mountä¸­çš„ç»„ä»¶å®žä¾‹
              it('correctly sets the message when created', () => {
                const vm = new Vue(MyComponent).$mount()
                expect(vm.message).toBe('bye!')
              })
-             // ´´½¨Ò»¸öÊµÀý²¢¼ì²éäÖÈ¾Êä³ö
+             // åˆ›å»ºä¸€ä¸ªå®žä¾‹å¹¶æ£€æŸ¥æ¸²æŸ“è¾“å‡º
              it('renders the correct message', () => {
                const Ctor = Vue.extend(MyComponent)
                const vm = new Ctor().$mount()
@@ -411,11 +411,11 @@ Vue.js µÄ²å¼þÓ¦µ±ÓÐÒ»¸ö¹«¿ª·½·¨ install ¡£Õâ¸ö·½·¨µÄµÚÒ»¸ö²ÎÊýÊÇVue¹¹ÔìÆ÷£¬µÚ¶þ¸
              })
        })
        
-## ±àÐ´¿É±»²âÊÔµÄ×é¼þ
+## ç¼–å†™å¯è¢«æµ‹è¯•çš„ç»„ä»¶
 
-ºÜ¶à×é¼þµÄäÖÈ¾Êä³öÓÉËüµÄ props ¾ö¶¨¡£ÊÂÊµÉÏ£¬Èç¹ûÒ»¸ö×é¼þµÄäÖÈ¾Êä³öÍêÈ«È¡¾öÓÚËüµÄ props£¬ÄÇÃ´Ëü»áÈÃ²âÊÔ±äµÃ¼òµ¥£¬¾ÍºÃÏñ¶ÏÑÔ²»Í¬²ÎÊýµÄ´¿º¯ÊýµÄ·µ»ØÖµ¡£
+å¾ˆå¤šç»„ä»¶çš„æ¸²æŸ“è¾“å‡ºç”±å®ƒçš„ props å†³å®šã€‚äº‹å®žä¸Šï¼Œå¦‚æžœä¸€ä¸ªç»„ä»¶çš„æ¸²æŸ“è¾“å‡ºå®Œå…¨å–å†³äºŽå®ƒçš„ propsï¼Œé‚£ä¹ˆå®ƒä¼šè®©æµ‹è¯•å˜å¾—ç®€å•ï¼Œå°±å¥½åƒæ–­è¨€ä¸åŒå‚æ•°çš„çº¯å‡½æ•°çš„è¿”å›žå€¼ã€‚
 
-    ¿´ÏÂÃæÕâ¸öÀý×Ó:
+    çœ‹ä¸‹é¢è¿™ä¸ªä¾‹å­:
     <template>
       <p>{{ msg }}</p>
     </template>
@@ -425,11 +425,11 @@ Vue.js µÄ²å¼þÓ¦µ±ÓÐÒ»¸ö¹«¿ª·½·¨ install ¡£Õâ¸ö·½·¨µÄµÚÒ»¸ö²ÎÊýÊÇVue¹¹ÔìÆ÷£¬µÚ¶þ¸
       }
     </script>
     
-Äã¿ÉÒÔÔÚ²»Í¬µÄ props ÖÐ£¬Í¨¹ý propsData Ñ¡Ïî¶ÏÑÔËüµÄäÖÈ¾Êä³ö:
+ä½ å¯ä»¥åœ¨ä¸åŒçš„ props ä¸­ï¼Œé€šè¿‡ propsData é€‰é¡¹æ–­è¨€å®ƒçš„æ¸²æŸ“è¾“å‡º:
 
     import Vue from 'vue'
     import MyComponent from './MyComponent.vue'
-    // ¹ÒÔØÔªËØ²¢·µ»ØÒÑäÖÈ¾µÄÎÄ±¾µÄ¹¤¾ßº¯Êý 
+    // æŒ‚è½½å…ƒç´ å¹¶è¿”å›žå·²æ¸²æŸ“çš„æ–‡æœ¬çš„å·¥å…·å‡½æ•° 
     function getRenderedText (Component, propsData) {
       const Ctor = Vue.extend(Component)
       const vm = new Ctor({ propsData }).$mount()
@@ -446,22 +446,22 @@ Vue.js µÄ²å¼þÓ¦µ±ÓÐÒ»¸ö¹«¿ª·½·¨ install ¡£Õâ¸ö·½·¨µÄµÚÒ»¸ö²ÎÊýÊÇVue¹¹ÔìÆ÷£¬µÚ¶þ¸
       })
     })
 
-## ¶ÏÑÔÒì²½¸üÐÂ
+## æ–­è¨€å¼‚æ­¥æ›´æ–°
 
-ÓÉÓÚ Vue ½øÐÐ Òì²½¸üÐÂDOM µÄÇé¿ö£¬Ò»Ð©ÒÀÀµDOM¸üÐÂ½á¹ûµÄ¶ÏÑÔ±ØÐëÔÚ Vue.nextTick »Øµ÷ÖÐ½øÐÐ£º
-// ÔÚ×´Ì¬¸üÐÂºó¼ì²éÉú³ÉµÄ HTML
+ç”±äºŽ Vue è¿›è¡Œ å¼‚æ­¥æ›´æ–°DOM çš„æƒ…å†µï¼Œä¸€äº›ä¾èµ–DOMæ›´æ–°ç»“æžœçš„æ–­è¨€å¿…é¡»åœ¨ Vue.nextTick å›žè°ƒä¸­è¿›è¡Œï¼š
+// åœ¨çŠ¶æ€æ›´æ–°åŽæ£€æŸ¥ç”Ÿæˆçš„ HTML
 
     it('updates the rendered message when vm.message updates', done => {
       const vm = new Vue(MyComponent).$mount()
       vm.message = 'foo'
-      // ÔÚ×´Ì¬¸Ä±äºóºÍ¶ÏÑÔ DOM ¸üÐÂÇ°µÈ´ýÒ»¿Ì
+      // åœ¨çŠ¶æ€æ”¹å˜åŽå’Œæ–­è¨€ DOM æ›´æ–°å‰ç­‰å¾…ä¸€åˆ»
       Vue.nextTick(() => {
         expect(vm.$el.textContent).toBe('foo')
         done()
       })
     })
     
-ÎÒÃÇ¼Æ»®×öÒ»¸öÍ¨ÓÃµÄ²âÊÔ¹¤¾ß¼¯£¬ÈÃ²»Í¬²ßÂÔµÄäÖÈ¾Êä³ö£¨ÀýÈçºöÂÔ×Ó×é¼þµÄ»ù±¾äÖÈ¾£©ºÍ¶ÏÑÔ±äµÃ¸ü¼òµ¥¡£
+æˆ‘ä»¬è®¡åˆ’åšä¸€ä¸ªé€šç”¨çš„æµ‹è¯•å·¥å…·é›†ï¼Œè®©ä¸åŒç­–ç•¥çš„æ¸²æŸ“è¾“å‡ºï¼ˆä¾‹å¦‚å¿½ç•¥å­ç»„ä»¶çš„åŸºæœ¬æ¸²æŸ“ï¼‰å’Œæ–­è¨€å˜å¾—æ›´ç®€å•ã€‚
 
 
 

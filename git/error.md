@@ -1,3 +1,3 @@
-1¡¢git push 403 ´íÎó
-	vim .git/config Îª 
+1ã€git push 403 é”™è¯¯
+	vim .git/config ä¸º 
 	url:https//smalltao@github.com/smalltao/lit.note.git

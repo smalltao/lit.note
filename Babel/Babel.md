@@ -1,33 +1,33 @@
-# [Babel ¹Ù·½½Ì³Ì](https://babeljs.io/learn-es2015/)
-# [ÈîÒ»·å²©¿Í](http://www.ruanyifeng.com/blog/2016/01/babel.html)
-Ê¹ÓÃbabel Ê¹ÓÃES6Óï·¨±àĞ´¼æÈİjs
+# [Babel å®˜æ–¹æ•™ç¨‹](https://babeljs.io/learn-es2015/)
+# [é˜®ä¸€å³°åšå®¢](http://www.ruanyifeng.com/blog/2016/01/babel.html)
+ä½¿ç”¨babel ä½¿ç”¨ES6è¯­æ³•ç¼–å†™å…¼å®¹js
     
-    // ×ªÂëÇ°
+    // è½¬ç å‰
     input.map(item => item + 1);
     
-    // ×ªÂëºó
+    // è½¬ç å
     input.map(function (item) {
       return item + 1;
     });
     
-## ÅäÖÃÎÄ¼ş
+## é…ç½®æ–‡ä»¶
     
-    BabelµÄÅäÖÃÎÄ¼şÊÇ.babelrc£¬´æ·ÅÔÚÏîÄ¿µÄ¸ùÄ¿Â¼ÏÂ¡£Ê¹ÓÃBabelµÄµÚÒ»²½£¬¾ÍÊÇÅäÖÃÕâ¸öÎÄ¼ş¡£
-    ¸ÃÎÄ¼şÓÃÀ´ÉèÖÃ×ªÂë¹æÔòºÍ²å¼ş£¬»ù±¾¸ñÊ½ÈçÏÂ¡£
+    Babelçš„é…ç½®æ–‡ä»¶æ˜¯.babelrcï¼Œå­˜æ”¾åœ¨é¡¹ç›®çš„æ ¹ç›®å½•ä¸‹ã€‚ä½¿ç”¨Babelçš„ç¬¬ä¸€æ­¥ï¼Œå°±æ˜¯é…ç½®è¿™ä¸ªæ–‡ä»¶ã€‚
+    è¯¥æ–‡ä»¶ç”¨æ¥è®¾ç½®è½¬ç è§„åˆ™å’Œæ’ä»¶ï¼ŒåŸºæœ¬æ ¼å¼å¦‚ä¸‹ã€‚
     
     {
       "presets": [],
       "plugins": []
     }
-    presets×Ö¶ÎÉè¶¨×ªÂë¹æÔò£¬¹Ù·½Ìá¹©ÒÔÏÂµÄ¹æÔò¼¯£¬Äã¿ÉÒÔ¸ù¾İĞèÒª°²×°¡£
+    presetså­—æ®µè®¾å®šè½¬ç è§„åˆ™ï¼Œå®˜æ–¹æä¾›ä»¥ä¸‹çš„è§„åˆ™é›†ï¼Œä½ å¯ä»¥æ ¹æ®éœ€è¦å®‰è£…ã€‚
     
-    # ES2015×ªÂë¹æÔò
+    # ES2015è½¬ç è§„åˆ™
     $ npm install --save-dev babel-preset-es2015
     
-    # react×ªÂë¹æÔò
+    # reactè½¬ç è§„åˆ™
     $ npm install --save-dev babel-preset-react
     
-    # ES7²»Í¬½×¶ÎÓï·¨Ìá°¸µÄ×ªÂë¹æÔò£¨¹²ÓĞ4¸ö½×¶Î£©£¬Ñ¡×°Ò»¸ö
+    # ES7ä¸åŒé˜¶æ®µè¯­æ³•ææ¡ˆçš„è½¬ç è§„åˆ™ï¼ˆå…±æœ‰4ä¸ªé˜¶æ®µï¼‰ï¼Œé€‰è£…ä¸€ä¸ª
     $ npm install --save-dev babel-preset-stage-0
     $ npm install --save-dev babel-preset-stage-1
     $ npm install --save-dev babel-preset-stage-2
@@ -42,33 +42,33 @@
         "plugins": []
       }
       
-## ÃüÁîĞĞ×ªÂë¹¤¾ß
+## å‘½ä»¤è¡Œè½¬ç å·¥å…·
     
-    BabelÌá¹©babel-cli¹¤¾ß£¬ÓÃÓÚÃüÁîĞĞ×ªÂë¡£
-    ËüµÄ°²×°ÃüÁîÈçÏÂ¡£
+    Babelæä¾›babel-cliå·¥å…·ï¼Œç”¨äºå‘½ä»¤è¡Œè½¬ç ã€‚
+    å®ƒçš„å®‰è£…å‘½ä»¤å¦‚ä¸‹ã€‚
     
     $ npm install --global babel-cli
-    »ù±¾ÓÃ·¨ÈçÏÂ¡£
+    åŸºæœ¬ç”¨æ³•å¦‚ä¸‹ã€‚
 
-    # ×ªÂë½á¹ûÊä³öµ½±ê×¼Êä³ö
+    # è½¬ç ç»“æœè¾“å‡ºåˆ°æ ‡å‡†è¾“å‡º
     $ babel example.js
     
-    # ×ªÂë½á¹ûĞ´ÈëÒ»¸öÎÄ¼ş
-    # --out-file »ò -o ²ÎÊıÖ¸¶¨Êä³öÎÄ¼ş
+    # è½¬ç ç»“æœå†™å…¥ä¸€ä¸ªæ–‡ä»¶
+    # --out-file æˆ– -o å‚æ•°æŒ‡å®šè¾“å‡ºæ–‡ä»¶
     $ babel example.js --out-file compiled.js
-    # »òÕß
+    # æˆ–è€…
     $ babel example.js -o compiled.js
     
-    # Õû¸öÄ¿Â¼×ªÂë
-    # --out-dir »ò -d ²ÎÊıÖ¸¶¨Êä³öÄ¿Â¼
+    # æ•´ä¸ªç›®å½•è½¬ç 
+    # --out-dir æˆ– -d å‚æ•°æŒ‡å®šè¾“å‡ºç›®å½•
     $ babel src --out-dir lib
-    # »òÕß
+    # æˆ–è€…
     $ babel src -d lib
     
-    # -s ²ÎÊıÉú³Ésource mapÎÄ¼ş
+    # -s å‚æ•°ç”Ÿæˆsource mapæ–‡ä»¶
     $ babel src -d lib -s
     
-    È»ºó£¬¸ÄĞ´package.json¡£
+    ç„¶åï¼Œæ”¹å†™package.jsonã€‚
     {
       // ...
       "devDependencies": {
@@ -79,74 +79,74 @@
       },
     }
     
-    ×ªÂëµÄÊ±ºò£¬¾ÍÖ´ĞĞÏÂÃæµÄÃüÁî¡£
+    è½¬ç çš„æ—¶å€™ï¼Œå°±æ‰§è¡Œä¸‹é¢çš„å‘½ä»¤ã€‚
     
     $ npm run build
     
 ## babel-node
 
-    babel-cli¹¤¾ß×Ô´øÒ»¸öbabel-nodeÃüÁî£¬Ìá¹©Ò»¸öÖ§³ÖES6µÄREPL»·¾³¡£ËüÖ§³ÖNodeµÄREPL»·¾³µÄËùÓĞ¹¦ÄÜ£¬¶øÇÒ¿ÉÒÔÖ±½ÓÔËĞĞES6´úÂë¡£
-    Ëü²»ÓÃµ¥¶À°²×°£¬¶øÊÇËæbabel-cliÒ»Æğ°²×°¡£È»ºó£¬Ö´ĞĞbabel-node¾Í½øÈëPEPL»·¾³¡£
+    babel-cliå·¥å…·è‡ªå¸¦ä¸€ä¸ªbabel-nodeå‘½ä»¤ï¼Œæä¾›ä¸€ä¸ªæ”¯æŒES6çš„REPLç¯å¢ƒã€‚å®ƒæ”¯æŒNodeçš„REPLç¯å¢ƒçš„æ‰€æœ‰åŠŸèƒ½ï¼Œè€Œä¸”å¯ä»¥ç›´æ¥è¿è¡ŒES6ä»£ç ã€‚
+    å®ƒä¸ç”¨å•ç‹¬å®‰è£…ï¼Œè€Œæ˜¯éšbabel-cliä¸€èµ·å®‰è£…ã€‚ç„¶åï¼Œæ‰§è¡Œbabel-nodeå°±è¿›å…¥PEPLç¯å¢ƒã€‚
     
     $ babel-node
     > (x => x * 2)(1)
     2
-    babel-nodeÃüÁî¿ÉÒÔÖ±½ÓÔËĞĞES6½Å±¾¡£½«ÉÏÃæµÄ´úÂë·ÅÈë½Å±¾ÎÄ¼şes6.js£¬È»ºóÖ±½ÓÔËĞĞ¡£
+    babel-nodeå‘½ä»¤å¯ä»¥ç›´æ¥è¿è¡ŒES6è„šæœ¬ã€‚å°†ä¸Šé¢çš„ä»£ç æ”¾å…¥è„šæœ¬æ–‡ä»¶es6.jsï¼Œç„¶åç›´æ¥è¿è¡Œã€‚
     
     $ babel-node es6.js
     2
-    babel-nodeÒ²¿ÉÒÔ°²×°ÔÚÏîÄ¿ÖĞ¡£
+    babel-nodeä¹Ÿå¯ä»¥å®‰è£…åœ¨é¡¹ç›®ä¸­ã€‚
     
     $ npm install --save-dev babel-cli
-    È»ºó£¬¸ÄĞ´package.json¡£
+    ç„¶åï¼Œæ”¹å†™package.jsonã€‚
     
     {
       "scripts": {
         "script-name": "babel-node script.js"
       }
     }
-    ÉÏÃæ´úÂëÖĞ£¬Ê¹ÓÃbabel-nodeÌæ´únode£¬ÕâÑùscript.js±¾Éí¾Í²»ÓÃ×öÈÎºÎ×ªÂë´¦Àí¡£
+    ä¸Šé¢ä»£ç ä¸­ï¼Œä½¿ç”¨babel-nodeæ›¿ä»£nodeï¼Œè¿™æ ·script.jsæœ¬èº«å°±ä¸ç”¨åšä»»ä½•è½¬ç å¤„ç†ã€‚
     
 ## babel-register
 
-    babel-registerÄ£¿é¸ÄĞ´requireÃüÁî£¬ÎªËü¼ÓÉÏÒ»¸ö¹³×Ó¡£´Ëºó£¬Ã¿µ±Ê¹ÓÃrequire¼ÓÔØ.js¡¢.jsx¡¢.esºÍ.es6ºó×ºÃûµÄÎÄ¼ş£¬¾Í»áÏÈÓÃBabel½øĞĞ×ªÂë¡£
+    babel-registeræ¨¡å—æ”¹å†™requireå‘½ä»¤ï¼Œä¸ºå®ƒåŠ ä¸Šä¸€ä¸ªé’©å­ã€‚æ­¤åï¼Œæ¯å½“ä½¿ç”¨requireåŠ è½½.jsã€.jsxã€.eså’Œ.es6åç¼€åçš„æ–‡ä»¶ï¼Œå°±ä¼šå…ˆç”¨Babelè¿›è¡Œè½¬ç ã€‚
     
     $ npm install --save-dev babel-register
-    Ê¹ÓÃÊ±£¬±ØĞëÊ×ÏÈ¼ÓÔØbabel-register¡£
+    ä½¿ç”¨æ—¶ï¼Œå¿…é¡»é¦–å…ˆåŠ è½½babel-registerã€‚
     
     require("babel-register");
     require("./index.js");
-    È»ºó£¬¾Í²»ĞèÒªÊÖ¶¯¶Ôindex.js×ªÂëÁË¡£
-    ĞèÒª×¢ÒâµÄÊÇ£¬babel-registerÖ»»á¶ÔrequireÃüÁî¼ÓÔØµÄÎÄ¼ş×ªÂë£¬¶ø²»»á¶Ôµ±Ç°ÎÄ¼ş×ªÂë¡£ÁíÍâ£¬ÓÉÓÚËüÊÇÊµÊ±×ªÂë£¬ËùÒÔÖ»ÊÊºÏÔÚ¿ª·¢»·¾³Ê¹ÓÃ¡£
+    ç„¶åï¼Œå°±ä¸éœ€è¦æ‰‹åŠ¨å¯¹index.jsè½¬ç äº†ã€‚
+    éœ€è¦æ³¨æ„çš„æ˜¯ï¼Œbabel-registeråªä¼šå¯¹requireå‘½ä»¤åŠ è½½çš„æ–‡ä»¶è½¬ç ï¼Œè€Œä¸ä¼šå¯¹å½“å‰æ–‡ä»¶è½¬ç ã€‚å¦å¤–ï¼Œç”±äºå®ƒæ˜¯å®æ—¶è½¬ç ï¼Œæ‰€ä»¥åªé€‚åˆåœ¨å¼€å‘ç¯å¢ƒä½¿ç”¨ã€‚
     
 ## babel-core
 
-    Èç¹ûÄ³Ğ©´úÂëĞèÒªµ÷ÓÃBabelµÄAPI½øĞĞ×ªÂë£¬¾ÍÒªÊ¹ÓÃbabel-coreÄ£¿é¡£
-    °²×°ÃüÁîÈçÏÂ¡£
+    å¦‚æœæŸäº›ä»£ç éœ€è¦è°ƒç”¨Babelçš„APIè¿›è¡Œè½¬ç ï¼Œå°±è¦ä½¿ç”¨babel-coreæ¨¡å—ã€‚
+    å®‰è£…å‘½ä»¤å¦‚ä¸‹ã€‚
     
     $ npm install babel-core --save
-    È»ºó£¬ÔÚÏîÄ¿ÖĞ¾Í¿ÉÒÔµ÷ÓÃbabel-core¡£
+    ç„¶åï¼Œåœ¨é¡¹ç›®ä¸­å°±å¯ä»¥è°ƒç”¨babel-coreã€‚
     
     var babel = require('babel-core');
     
-    // ×Ö·û´®×ªÂë
+    // å­—ç¬¦ä¸²è½¬ç 
     babel.transform('code();', options);
     // => { code, map, ast }
     
-    // ÎÄ¼ş×ªÂë£¨Òì²½£©
+    // æ–‡ä»¶è½¬ç ï¼ˆå¼‚æ­¥ï¼‰
     babel.transformFile('filename.js', options, function(err, result) {
       result; // => { code, map, ast }
     });
     
-    // ÎÄ¼ş×ªÂë£¨Í¬²½£©
+    // æ–‡ä»¶è½¬ç ï¼ˆåŒæ­¥ï¼‰
     babel.transformFileSync('filename.js', options);
     // => { code, map, ast }
     
-    // Babel AST×ªÂë
+    // Babel ASTè½¬ç 
     babel.transformFromAst(ast, code, options);
     // => { code, map, ast }
-    ÅäÖÃ¶ÔÏóoptions£¬¿ÉÒÔ²Î¿´¹Ù·½ÎÄµµhttp://babeljs.io/docs/usage/options/¡£
-    ÏÂÃæÊÇÒ»¸öÀı×Ó¡£
+    é…ç½®å¯¹è±¡optionsï¼Œå¯ä»¥å‚çœ‹å®˜æ–¹æ–‡æ¡£http://babeljs.io/docs/usage/options/ã€‚
+    ä¸‹é¢æ˜¯ä¸€ä¸ªä¾‹å­ã€‚
     
     var es6Code = 'let x = n => n + 1';
     var es5Code = require('babel-core')
@@ -155,6 +155,6 @@
       })
       .code;
     // '"use strict";\n\nvar x = function x(n) {\n  return n + 1;\n};'
-    ÉÏÃæ´úÂëÖĞ£¬transform·½·¨µÄµÚÒ»¸ö²ÎÊıÊÇÒ»¸ö×Ö·û´®£¬±íÊ¾ĞèÒª×ª»»µÄES6´úÂë£¬µÚ¶ş¸ö²ÎÊıÊÇ×ª»»µÄÅäÖÃ¶ÔÏó¡£
+    ä¸Šé¢ä»£ç ä¸­ï¼Œtransformæ–¹æ³•çš„ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯ä¸€ä¸ªå­—ç¬¦ä¸²ï¼Œè¡¨ç¤ºéœ€è¦è½¬æ¢çš„ES6ä»£ç ï¼Œç¬¬äºŒä¸ªå‚æ•°æ˜¯è½¬æ¢çš„é…ç½®å¯¹è±¡ã€‚
     
 ## babel-polyfill

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 dateStr=`date +"%Y%m%d"`
-trunkURL="http://svn.sogou-inc.com/svn/websearch4/web/web_front/websearch/trunk/webapp/reventondc_youdao"
-packageURL="http://svn.sogou-inc.com/svn/websearch4/web/web_front/websearch/trunk/webapp_package/reventondc_youdao"
+trunkURL="http://localhost:8080/trunk/webapp/reventondc_youdao"
+packageURL="http://localhost:8080/trunk/webapp_package/reventondc_youdao"
 tagName="youdao.${dateStr}"
-tagURL="http://svn.sogou-inc.com/svn/websearch4/web/web_front/websearch/tags/webapp/reventondc"
+tagURL="http://localhost:8080/tags/webapp/reventondc"
 tagCount=`svn list "$tagURL" --username "$username" --password "$password" --non-interactive | grep "${tagName}" | wc -l`
 tagVersion=`echo $(( $tagCount+97 )) | awk '{printf("%c", $1)}'`
 finalTagURL="${tagURL}/${tagName}.${tag_type}.${tagVersion}"
