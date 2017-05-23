@@ -98,9 +98,15 @@ mysql> lock table actor as a read , actor as b read;
 4. 按照别名的查询可以正确执行
 mysql> select a.first_name,a.last_name,b.first_name,b.last_name from actor a,actor b where a.first_name = b.first_name and a.first_name = 'Lisa' and a.last_name = 'Tom' and a.last_name <> b.last_name;
 ```
+### 并发插入
+> 上文提到过 `MyISAM`表的读和写是串行的，但这是就总体而言的，在一定条件下，`MyISAM`表也支持查询和插入操作的并发进行。
+> MyISAM 存储引擎有一个系统变量concurrent_insert,专门用以控制其并发插入的行为，其值分别可以为0、1 或者 2.
 
+1. 当concurrent_insert设置为0时，不允许并发插入
+2. 当concurrent_isnert设置为0时，如果MyISAM表中没有空洞（即表的中间没有被删除的行），MyISAM允许在一个进程读表的同时，另一个进程从表的末尾插入记录。这也是MySQL的默认设置
+3. 当concurrent_insert设置为2时，无论MyISAM表中有没有空洞，都允许在表的末尾并发插入记录。
 
-
+> 如下例子： sessin_1获得了一个表的READ LOCAL锁，该线程可以对表进行查询操作，但是不能对表进行更新操作；其他线程 sessin_2 虽然不能对表进行删除和更新操作，但是却可以对表进行并发插入操作，这里假设表中间不存在空洞。
 
 
 
