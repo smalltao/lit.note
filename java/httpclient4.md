@@ -664,6 +664,103 @@ sr.register(http);
 sr.register(https);
 ````
 
+## 代理配置
+> 尽管 HttpClient 了解复杂的路由模式和代理链，它仅支持简单直接的或开箱的跳转代理链接。
+告诉HttpClient通过代理去连接到目标主机的最简单方式是通过设置默认的代理参数：
+
+```
+DefaultHttpClient httpclient = new DefaultHttpClient();
+HttpHost proxy = new HttpHost("someproxy", 8080);
+httpClient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+```
+
+> 也可以构建 HttpClient 使用标准的JRE代理选择器来获得代理信息
+
+```
+DefaultHttpClient httpclient = new DefaultHttpClient();
+ProxySelectorRoutePlanner routePlanner = new ProxySelectorRoutePlanner(httpclient.getConnectionManager().getSchemeRegistry(), ProxySelector.getDefault());
+httpclient.setRoutePlanner(routePlanner);
+```
+> 另外一种选择，可以提供一个定制的RoutePlanner 实现来获得HTTP路由计算处理上的复制的控制：
+```
+DefaultHttpClient httpclient = new DefaultHttpClient();
+httpclient.setRoutePlanner(new HttpRoutePlanner() {
+    public HttpRoute determinRoute(HttpHost target, HttpRequest request, HttpContext context) throwns HttpException {
+        return new HttpRoute(target, null, new HttpHost("someproxy", 8080), "https".equalsIgnorCase(target.getSchemeName()));
+    }
+});
+```
+## HTTP 链接管理器
+### 链接操作器
+> 连接操作是客户端的低层套接字或可以通过外部实体，通常称为连接操作的被操作的状态的连接。
+OperatedClientConnection接口扩展了HttpClientConnection接口而且定义了额外的控制连接套接字的方法。ClientConnectionOperator接口代表了创建实例和更新那些对象低层套接字的策略。
+实现类最有可能利用SocketFactory来创建java.net.Socket实例。ClientConnectionOperator接口可以让HttpClient的用户提供一个连接操作的定制策略和提供可选实现OperatedClientConnection接口的能力。
+
+### 管理链接 和 管理链接器
+> HTTP连接是复杂的，有状态的，线程不安全的对象需要正确的管理以便正确地执行功能。HTTP连接在同一时间仅仅只能由一个执行线程来使用。
+HttpClient采用一个特殊实体来管理访问HTTP连接，这被称为HTTP连接管理器，代表了ClientConnectionManager接口。
+一个HTTP连接管理器的目的是作为工厂服务于新的HTTP连接，管理持久连接和同步访问持久连接来确保同一时间仅有一个线程可以访问一个连接。
+内部的HTTP连接管理器和OperatedClientConnection实例一起工作，但是它们为服务消耗器ManagedClientConnection提供实例。
+ManagedClientConnection扮演连接之上管理状态控制所有I/O操作的OperatedClientConnection实例的包装器。
+它也抽象套接字操作，提供打开和更新去创建路由套接字便利的方法。ManagedClientConnection实例了解产生它们到连接管理器的链接，而且基于这个事实，当不再被使用时，它们必须返回到管理器。
+ManagedClientConnection类也实现了ConnectionReleaseTrigger接口，可以被用来触发释放连接返回给管理器。
+一旦释放连接操作被触发了，被包装的连接从ManagedClientConnection包装器中脱离，OperatedClientConnection实例被返回给管理器。
+尽管服务消耗器仍然持有ManagedClientConnection实例的引用，它也不再去执行任何I/O操作或有意无意地改变的OperatedClientConnection状态。
+这里有一个从连接管理器中获取连接的示例：
+
+```
+HttpParams params = new BasicHttpParams();
+Scheme http = new Scheme("http", PlainSocketFactory.getSocketFactory(),80);
+SchemeRegistry sr = new SchemeRegistry();
+sr.regiestry(http);
+ClientConnectionManager connMrg = new SingleClientConnManager(params, sr);
+// 请求新链接，这可能是一个很长的过程。
+ClientConnectionRequest conRequest = connMrg.requestConnection(new HttpRoute(new HttpHost("localhost", 80)), null);
+// 等待链接10 秒
+ManagedClientConnection conn = connRequest.getConnection(10.TimeUnit.SECONNDS);
+try {
+    // 用连接在做有用的事情。当完成时释放连接。
+    conn.releaseConnection();
+} cathc (IOException ex) {
+    // 在I/O error之上终止连接。
+    conn.abortConnection();
+    throw ex;
+}
+```
+
+> 如果需要，连接请求可以通过调用来ClientConnectionRequest#abortRequest()方法过早地中断。这会解锁在ClientConnectionRequest#getConnection()方法中被阻止的线程。
+一旦响应内容被完全消耗后，BasicManagedEntity包装器类可以用来保证自动释放低层的连接。HttpClient内部使用这个机制来实现透明地对所有从HttpClient#execute()方法中获得响应释放连接：
+
+```
+ClientConnectionRequest connRequest = connMrg.requestConnection(new HttpRoute(new HttpHost("localhost", 80)), null);
+ManagedClientConnection conn = connRequest.getConnection(10, TimeUnit.SECONDS);
+try {
+    BasicHttpRequest request = new BasicHttpRequest("GET", "/");
+    conn.sendRequestHeader(request);
+    HttpResponse response = conn.receiveResponseHeader();
+    conn.receiveResponseEntity(response);
+    HttpEntity entity = response.getEntity();
+    if (entity != null) {
+        BasicManagedEntity managedEntity = new BasicManagedEntity(entity, conn, true);
+        // 替换实体
+        response.setEntity(managedEntity);
+    }
+    // 使用响应对象做有用的事情。当响应内容被消耗后这个连接将会自动释放。
+} catch (IOException ex) {
+    //在I/O error之上终止连接。
+    conn.abortConnection();
+    throw ex;
+}
+```
+
+
+
+
+
+
+
+
+
 
 
 
