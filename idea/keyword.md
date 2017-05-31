@@ -52,7 +52,7 @@ F3 | 查找下一个
 Shift + F3 | 查找上一个
 Ctrl + R | 替换
 Ctrl + Shift + F | 在指定路径查找
-Ctrl + Shift + R | 在自动路径替换
+Ctrl + Shift + R | 在指定路径替换
 Ctrl + Shift + S | 搜索结构 （这里的结构可以是方法或者代码模板等）
 Ctrl + Shift + M | 替换结构 （这里的结构可以是方法或者代码模板等）
 
