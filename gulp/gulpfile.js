@@ -84,6 +84,7 @@ gulp.task('imagemin', function() {
         .pipe(gulp.dest('dist/img'))
         .pipe(reload({ stream: true }))
 });
+
 gulp.task('default', function() {
     gulp.watch('src/css/**/*.scss', ['sass']);
     gulp.watch(['src/**/*.html','src/*.html'], ['html']);

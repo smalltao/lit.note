@@ -46,6 +46,7 @@ build_nginx_2(){
     yum -y erase nginx*
 	yum -y install nginx-xx-search-wap.x86_64
 }
+
 # 构建应用
 build_app() {
     # 加载变量
