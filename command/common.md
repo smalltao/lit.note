@@ -32,3 +32,4 @@ export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH:$HOMR/bin
 2. file /bin/ls
 3. 查看版本号： lsb_release -a
 ```
+

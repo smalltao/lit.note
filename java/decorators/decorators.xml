@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/decorators">
+	<!--装饰器排除的文件-->
+	<excludes>
+		<pattern>/*.jpg</pattern>
+		<pattern>/*.png</pattern>
+		<pattern>/*.gif</pattern>
+		<pattern>/*.js</pattern>
+		<pattern>/*.css</pattern>
+		<pattern>/*.less</pattern>
+		<pattern>/*.html</pattern>
+		<pattern>/*.htm</pattern>
+		<pattern>/*.ico</pattern>
+		<pattern>/login*</pattern>
+		<pattern>/admin/login*</pattern>
+	</excludes>
+	<!--装饰器装饰的文件-->
+	<decorator name="frameset" page="frameset.jsp">
+        <!--包裹路径 可以使用正则-->
+		<pattern>/*</pattern>
+	</decorator>
+	
+</decorators>
