@@ -1,4 +1,4 @@
-# 配置指定类中指定日志打印到指定位置
+##  不重启系统改变日志输出级别
 ```
 log4j.logger.project.javase.com.martin.lang.Product=INFO,A
 log4j.appender.A=org.apache.log4j.ConsoleAppender
@@ -42,3 +42,5 @@ log4j.appender.A.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%c]-[%p]
     </listener-class>
 </listener>
 ```
+
+## 配置指定类中指定日志打印到指定位置
