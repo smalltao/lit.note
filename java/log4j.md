@@ -44,3 +44,16 @@ log4j.appender.A.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%c]-[%p]
 ```
 
 ## 配置指定类中指定日志打印到指定位置
+```
+# 将指定日志输出到单独文件中
+log4j.logger.time=debug, time
+log4j.appender.time=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.time.File=/logs/dcode/time.log
+log4j.appender.time.layout=org.apache.log4j.PatternLayout
+log4j.appender.time.layout.ConversionPattern=[%-5p] %d{yyyy-MM-dd HH:mm:ss} %t %c - %m%n
+```
+
+```
+private static Logger logger = Logger.getLogger("time");
+```
+

@@ -1,4 +1,6 @@
 # mybatis使用笔记
+> [mybatis参考文档](http://www.mybatis.org/mybatis-3/zh/java-api.html)
+
 > mysql 使用动态建表语句
 
 ```
