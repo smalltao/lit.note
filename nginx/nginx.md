@@ -1,3 +1,4 @@
+nginx官方文档 http://nginx.org/en/docs/
 nginx 从入门到精通 运维生存时间 http://www.ttlsa.com/nginx/nginx-stu-pdf/
 #安装
 1、必要软件
