@@ -54,5 +54,18 @@ unzip file.zip
 ```
 
 
+## lzop
+> lzop工具最适合在注重压缩速度的场合，压缩文件时会新建.lzo文件，而原文件保持不变(使用-U选项除外)
+
+```
+# lzop -v test # 创建test.lzo压缩文件，输出详细信息，保留test文件不变
+# lzop -Uv test # 创建test.lzo压缩文件，输出详细信息，删除test文件
+# lzop -t test.lzo # 测试test.lzo压缩文件的完整性
+# lzop –info test.lzo # 列出test.lzo中各个文件的文件头
+# lzop -l test.lzo # 列出test.lzo中各个文件的压缩信息
+# lzop –ls test.lzo # 列出test.lzo文件的内容，同ls -l功能
+# cat test | lzop > t.lzo # 压缩标准输入并定向到标准输出
+# lzop -dv test.lzo # 解压test.lzo得到test文件，输出详细信息，保留test.lzo不变
+```
 
 

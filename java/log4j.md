@@ -48,12 +48,46 @@ log4j.appender.A.layout.ConversionPattern=%-d{yyyy-MM-dd HH:mm:ss,SSS} [%c]-[%p]
 # 将指定日志输出到单独文件中
 log4j.logger.time=debug, time
 log4j.appender.time=org.apache.log4j.DailyRollingFileAppender
+//每天一个日志
+log4j.appender.time.Append=true
+//日志文件是否追加 ，可选参数Append配置是否在原文件内容的基础上追加日志。如果为false，Logger 初始化时会先清掉文件内容，也就是说每次重启程序，原来的日志会丢失。如果为true，日志文件会越来越大。默认为true
+log4j.appender.time.DatePattern='_' yyyy-MM-dd-HH-mm
+//这里就是定义的时间格式，如果时间定义到分钟（mm）就是每分钟生成一个日志文件，而这里定义的这个格式就是 日志名后缀
 log4j.appender.time.File=/logs/dcode/time.log
+//日志输出录路径
 log4j.appender.time.layout=org.apache.log4j.PatternLayout
+//日志中输出的日志的格式
+log4j.appender.file3.Encoding=UTF-8
+//日志输出编码
 log4j.appender.time.layout.ConversionPattern=[%-5p] %d{yyyy-MM-dd HH:mm:ss} %t %c - %m%n
+//定义的日志格式
 ```
 
 ```
 private static Logger logger = Logger.getLogger("time");
 ```
+
+## mybatis 日志输出配置
+
+```
+log4j.logger.java.sql.ResultSet=INFO
+log4j.logger.org.apache=INFO
+log4j.logger.java.sql.Connection=DEBUG
+log4j.logger.java.sql.Statement=DEBUG
+log4j.logger.java.sql.PreparedStatement=DEBUG
+log4j.logger.java.sql.ResultSet=INFO
+```
+
+## hibernate 日志输出配置
+
+```
+log4j.logger.org.hibernate=INFO
+log4j.logger.org.hibernate.SQL=trace
+log4j.logger.org.hibernate.HQL=trace
+log4j.category.org.hibernate.type=trace
+log4j.logger.org.springframework=INFO
+log4j.rootLogger=INFO, CONSOLE ,PRODUCT,PRODUCT-ERROR
+```
+
+
 
