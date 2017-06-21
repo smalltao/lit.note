@@ -26,7 +26,6 @@ public class Producer implements Runnable {
         while(mock.hasMoreLines()) {
             String line = mock.getLine();
             buffer.insert(line);
-
         }
         buffer.setPendingLines(false);
     }

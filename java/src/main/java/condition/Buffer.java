@@ -81,7 +81,7 @@ public class Buffer {
             }
             if (hasPendingLines()) {
                 line = buffer.poll();
-                System.out.printf("%s: 读取行：缓冲区大小： %d: " + Thread.currentThread().getName(), buffer.size());
+                System.out.printf("%s: 读取行：缓冲区大小： %d: \n" ,Thread.currentThread().getName(), buffer.size());
                 space.signalAll();
             }
         } catch (InterruptedException e) {

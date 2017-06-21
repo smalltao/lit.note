@@ -20,8 +20,6 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-        //循环读取缓冲区的数据
-
         while (buffer.hasPendingLines()) {
             String line = buffer.get();
             processLine(line);
