@@ -1,4 +1,4 @@
-package condition;
+package concurrent.condition;
 
 /**
  * <p>Title:      文本文件模拟类. </p>

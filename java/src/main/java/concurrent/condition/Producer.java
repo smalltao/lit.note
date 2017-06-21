@@ -1,4 +1,4 @@
-package condition;
+package concurrent.condition;
 
 /**
  * <p>Title:      生产者线程对象. </p>

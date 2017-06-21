@@ -1,4 +1,4 @@
-package condition;
+package concurrent.condition;
 
 import java.util.LinkedList;
 import java.util.concurrent.locks.Condition;
