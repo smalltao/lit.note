@@ -4,14 +4,19 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * 打印队列类
+ * <p>Title:      打印队列类. </p>
+ * <p>Description 使用ReentrantLock实现了一个临界区，保证同一时间只有一个对象能够访问临界区资源 </p>
+ * <p>Company:    https://www.sogou.com/ </p>
+ *
+ * @Author         <a href="litaoos2862@sogou-inc.com"/>李涛</a>
+ * @CreateDate     2017/6/21 10:05
  */
 public class PrintQueue {
 
     private final Lock queueLock = new ReentrantLock();
 
 
-    private void printJoib(Object document) {
+    public void printJoib(Object document) {
         queueLock.lock();
 
         try {
@@ -20,6 +25,8 @@ public class PrintQueue {
             Thread.sleep(duration);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            queueLock.unlock();
         }
 
     }
