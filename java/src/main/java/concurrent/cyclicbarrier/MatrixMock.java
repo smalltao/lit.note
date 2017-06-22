@@ -38,7 +38,7 @@ public class MatrixMock {
                 }
             }
         }
-        System.out.printf("矩阵中共有需要查找的字符 %d 个", counter);
+        System.out.printf("矩阵中共有需要查找的字符 %d 个 \n", counter);
     }
 
     /**
@@ -51,8 +51,11 @@ public class MatrixMock {
      * @CreateDate 2017/6/22 11:47
      */
     public int[] getRow(int row) {
-
+        if ((row>=0) && (row<data.length)) {
+            return data[row];
+        }
         return null;
     }
+
 
 }
