@@ -29,19 +29,17 @@ public class Consumer implements Runnable {
         for (int i = 0; i < 10; i++) {
             System.out.printf("消费者，第 %s 次循环 \n", cycle);
 
-            //将生产者放入缓冲区的10个字符串打印
+            try {
+                buffer = exchanger.exchange(buffer);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.printf("消费者，缓冲区大小 %s \n", buffer.size());
+
             for (int j = 0; j < 10; j++) {
-
-                try {
-                    buffer = exchanger.exchange(buffer);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                System.out.printf("消费者，缓冲区大小 %s \n", buffer.size());
-                String message = buffer.get(j);
+                String message = buffer.get(0);
                 System.out.printf("消费者，消费的串为 %s \n", message);
-                buffer.remove(j);
+                buffer.remove(0);
             }
             cycle++;
         }
