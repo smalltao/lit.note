@@ -63,7 +63,7 @@ public class Main {
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
-            System.out.printf("main: 任务 %d 结果为：%s", i, number);
+            System.out.printf("main: 任务 %d 结果为：%s \n", i, number);
 
         }
         executor.shutdown();
