@@ -84,7 +84,10 @@ public class MemcachedController extends CommonController implements HandlerInte
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HandlerMethod handlerMethod = (HandlerMethod) handler;
-        handlerMethod.getBean();
+        Object obj = handlerMethod.getBean();
+        Class<? extends Object> cla = obj.getClass();
+        String name = cla.getName();
+        System.out.println("类名：" + name);
         return true;
     }
 
