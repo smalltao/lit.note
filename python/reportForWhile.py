@@ -58,7 +58,7 @@ while minDate<=today:
     s = requests.Session()
     request_retry = HTTPAdapter(max_retries=3)
     s.mount('https://',request_retry)
-    s.mount('http://',request_retry)
+    s.mount('com.http://',request_retry)
 
     r = requests.put(url, payload, timeout=3000)
 

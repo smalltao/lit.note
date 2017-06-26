@@ -77,12 +77,12 @@ pcuv = json.loads(json.dumps(pcout[0]))['uv']
 wappv = json.loads(json.dumps(wapout[0]))['pv']
 wapuv = json.loads(json.dumps(wapout[0]))['uv']
 payload = {'xmId': '2002', 'xmKey': 'ae14bf194f10913b','date':yesterday2, '217':pcuv, '216':pcpv, '219':wapuv, '218':wappv}
-url = 'http://10.134.85.224:8888/dictionary'
+url = 'com.http://10.134.85.224:8888/dictionary'
 
 s = requests.Session()
 request_retry = HTTPAdapter(max_retries=3)
 s.mount('https://',request_retry)
-s.mount('http://',request_retry)
+s.mount('com.http://',request_retry)
 
 r = requests.put(url, payload, timeout=3000)
 

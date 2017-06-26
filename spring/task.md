@@ -4,9 +4,9 @@
 
 ## 注解方式
 1. 在 `spring` 配置文件(`applicationContext.xml` 或者`{project_name}_servelt.xml`)中的schema配置中增加 
-`xmlns:task="http://www.springframework.org/schema/task"`
-`http://www.springframework.org/schema/task`
-`http://www.springframework.org/schema/task/spring-task-3.0.xsd`
+`xmlns:task="com.http://www.springframework.org/schema/task"`
+`com.http://www.springframework.org/schema/task`
+`com.http://www.springframework.org/schema/task/spring-task-3.0.xsd`
 
 2. 启动定时器  `<task:annotation-driven/>`
 

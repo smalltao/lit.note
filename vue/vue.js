@@ -2780,7 +2780,7 @@
     };
 
     /**
-     * Clean up for dependency thread.collection.
+     * Clean up for dependency com.thread.collection.
      */
     Watcher.prototype.cleanupDeps = function cleanupDeps () {
         var this$1 = this;
@@ -4419,7 +4419,7 @@
         'truespeed,typemustmatch,visible'
     );
 
-    var xlinkNS = 'http://www.w3.org/1999/xlink';
+    var xlinkNS = 'com.http://www.w3.org/1999/xlink';
 
     var isXlink = function (name) {
         return name.charAt(5) === ':' && name.slice(0, 5) === 'xlink'
@@ -4508,8 +4508,8 @@
     /*  */
 
     var namespaceMap = {
-        svg: 'http://www.w3.org/2000/svg',
-        math: 'http://www.w3.org/1998/Math/MathML'
+        svg: 'com.http://www.w3.org/2000/svg',
+        math: 'com.http://www.w3.org/1998/Math/MathML'
     };
 
     var isHTMLTag = makeMap(

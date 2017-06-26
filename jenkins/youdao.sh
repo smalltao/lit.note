@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 dateStr=`date +"%Y%m%d"`
-trunkURL="http://localhost:8080/trunk/webapp/reventondc_youdao"
-packageURL="http://localhost:8080/trunk/webapp_package/reventondc_youdao"
+trunkURL="com.http://localhost:8080/trunk/webapp/reventondc_youdao"
+packageURL="com.http://localhost:8080/trunk/webapp_package/reventondc_youdao"
 tagName="youdao.${dateStr}"
-tagURL="http://localhost:8080/tags/webapp/reventondc"
+tagURL="com.http://localhost:8080/tags/webapp/reventondc"
 tagCount=`svn list "$tagURL" --username "$username" --password "$password" --non-interactive | grep "${tagName}" | wc -l`
 tagVersion=`echo $(( $tagCount+97 )) | awk '{printf("%c", $1)}'`
 finalTagURL="${tagURL}/${tagName}.${tag_type}.${tagVersion}"

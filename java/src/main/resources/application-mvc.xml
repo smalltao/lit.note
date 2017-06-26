@@ -2,17 +2,27 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 
 	                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
+    <!--属性配置-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:memcached.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--开启注解支持-->
     <mvc:annotation-driven/>
-    <context:component-scan base-package="thread.concurrent"/>
+    <!-- 设置使用注解的类所在的jar包 -->
+    <context:component-scan base-package="com"/>
 
-    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" autowire="no"></bean>
-
+    <!--异常处理控制器-->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
@@ -23,8 +33,48 @@
         </property>
     </bean>
 
+    <!-- 对RequestMapping注解的控制器进行HTTP路径、HTTP方法和请求参数解析-->
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" autowire="no"></bean>
+
+    <!--异常处理器-->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.web.bind.MissingServletRequestParameterException">404</prop>
+                <prop key="org.springframework.beans.TypeMismatchException">404</prop>
+                <prop key="cn.bj.chineseall.exception.BusinessException">500</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--memcached 缓存支持-->
+    <bean id="memCachedPool" class="com.whalin.MemCached.SockIOPool" factory-method="getInstance" init-method="initialize" destroy-method="shutDown">
+        <constructor-arg>
+            <value>memCachedPool</value>
+        </constructor-arg>
+        <property name="servers" value="#{'${memcached.server}'.split(' ')}" />
+        <property name="initConn" value="${memcached.initConn}" />
+        <property name="minConn" value="${memcached.minConn}" />
+        <property name="maxConn" value="${memcached.maxConn}" />
+
+        <property name="maintSleep" value="${memcached.maintSleep}" />
+        <property name="socketTO" value="${memcached.socketTO}" />
+        <property name="socketConnectTO" value="${memcached.socketConnectTO}" />
+        <property name="aliveCheck" value="${memcached.aliveCheck}" />
+        <property name="failover" value="${memcached.failover}" />
+    </bean>
+
+    <bean id="memCachedClient" class="com.whalin.MemCached.MemCachedClient">
+        <constructor-arg><value>memCachedPool</value></constructor-arg>
+    </bean>
+
+    <!--AnnotationMethodHandlerAdapter来在实际调用handlermethod前对其参数进行处理-->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"></bean>
 
+
+    <!--spring mvc 为视图层添加的前缀和后缀-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/view/"
+          p:suffix=".jsp"/>
 
     <!-- 上传文件长度限制声明 -->
     <bean id="multipartResolver"
