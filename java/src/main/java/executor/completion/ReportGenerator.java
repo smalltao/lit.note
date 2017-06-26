@@ -4,7 +4,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>Title:      . </p>
+ * <p>Title:      请求创造者. </p>
  * <p>Description TODO </p>
  * <p>Company:    https://www.sogou.com/ </p>
  *
@@ -29,12 +29,13 @@ public class ReportGenerator implements Callable<String> {
         try {
             long duration = (long) (Math.random() * 10);
             TimeUnit.SECONDS.sleep(duration);
+            System.out.printf("%s_%s 创建一个上报信息用了 %d 秒", sender, title,duration);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         String ret = sender + ": " + title;
-        return null;
+        return ret;
     }
 
 }
