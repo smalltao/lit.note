@@ -2780,7 +2780,7 @@
     };
 
     /**
-     * Clean up for dependency collection.
+     * Clean up for dependency thread.collection.
      */
     Watcher.prototype.cleanupDeps = function cleanupDeps () {
         var this$1 = this;
