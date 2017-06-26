@@ -30,7 +30,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**" />
-            <bean class="com.controller.MemcachedController" />
+            <bean class="com.controller.Interceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 

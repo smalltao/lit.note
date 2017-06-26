@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.service.InterceptorService;
 import com.whalin.MemCached.MemCachedClient;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class CommonController {
 
     @Autowired
     private MemCachedClient memCachedClient;
+
+    @Autowired
+    private InterceptorService interceptorService;
 
     protected String viewPath = "default/index";
 
