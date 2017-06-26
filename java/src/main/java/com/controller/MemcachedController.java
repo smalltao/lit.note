@@ -23,5 +23,4 @@ public class MemcachedController extends CommonController {
     public String index(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {
         return "memcached/index";
     }
-
 }

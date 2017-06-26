@@ -57,11 +57,13 @@ $ gitbook serve ./ --log=debug --debug 启动时打印日志
 ```
 ### 生成pdf
 > 安装 npm pdf 插件
+
 ```
 $ npm install phantomjs
 $ npm install gitbook-pdf -g
 ```
 > 手动安装 pdf插件
+
 ```
 $ linux 需要自己编译 phantomjs文件
 $ git clone git://github.com/ariya/phantomjs.git
