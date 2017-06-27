@@ -3,17 +3,21 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 
-	                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
     <!--开启注解支持-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
+        <mvc:message-converters>
+            <!--自动将requestbody里的json字符串的entity 转换为对应的对象实例-->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
     <!-- 使用默认模式处理静态资源 -->
     <mvc:default-servlet-handler/>
-    <!-- 使@Autowire注解被支持 -->
-    <context:annotation-config></context:annotation-config>
     <!-- 设置使用注解的类所在的jar包 annotation-config="true" 隐式的向Spring容器注册-->
     <context:component-scan base-package="com" annotation-config="true"/>
 
@@ -39,10 +43,28 @@
     <!--内容协商视图解析器 根据请求头的不同使用不同的响应-->
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <!--设置内容协商管理器-->
-        <property name="contentNegotiationManager" ref="contentNegotiationManager"></property>
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+                <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+                    <!--将java对象转换为xml-->
+                    <property name="marshaller">
+                        <bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+                            <property name="supportedClasses">
+                                <list>
+                                    <value>java.util.Collection</value>
+                                    <value>com.bean.Texts</value>
+                                </list>
+                            </property>
+                        </bean>
+                    </property>
+                </bean>
+            </list>
+        </property>
         <property name="viewResolvers">
             <list>
-                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                     <property name="prefix">
                         <value>/WEB-INF/view/</value>
@@ -53,35 +75,23 @@
                 </bean>
             </list>
         </property>
-        <property name="defaultViews">
-            <list>
-                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
-                <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
-                    <property name="marshaller">
-                        <bean class="org.springframework.oxm.xstream.XStreamMarshaller">
-                            <property name="supportedClasses">
-                                <list>
-                                    <value>java.util.Collection</value>
-                                </list>
-                            </property>
-                            <!--<property name="aliases">-->
-                            <!--<map>-->
-                            <!--<entry value="org.laohu.modules.school.model.School" key="school"></entry>-->
-                            <!--</map>-->
-                            <!--</property>-->
-                        </bean>
-                    </property>
-                </bean>
-            </list>
-        </property>
     </bean>
 
     <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="defaultContentType" value="application/json"/>
+        <!-- 扩展名至mimeType的映射,即 /user.json => application/json -->
+        <property name="favorPathExtension" value="true"/>
+        <!-- 用于开启 /userinfo/123?format=json 的支持 -->
+        <property name="favorParameter" value="true"/>
+        <property name="parameterName" value="format"/>
+        <!--忽略请求头-->
+        <property name="ignoreAcceptHeader" value="true"/>
         <property name="mediaTypes">
             <props>
                 <prop key="json">application/json</prop>
                 <prop key="xml">application/xml</prop>
                 <prop key="html">text/html</prop>
+                <prop key="jsonp">application/javascript</prop>
             </props>
         </property>
     </bean>
