@@ -25,20 +25,20 @@ import java.util.HashMap;
 @RequestMapping("/memcached")
 public class MemcachedController extends CommonController {
 
-    @RequestMapping(value = {"", "/", "/index"}, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = {"", "/", "/index"})
     @ResponseBody
-    public String index(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public HashMap index(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HashMap resultMap = new HashMap();
         resultMap.put("姓名", "李涛");
         resultMap.put("年龄", "27");
         System.out.printf("处理。。。\n");
 
-        return JSONObject.fromObject(resultMap).toString();
+        return resultMap;
     }
 
-    @RequestMapping(value = "list", produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "list")
     @ResponseBody
-    public String list(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public HashMap list(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HashMap resultMap = new HashMap();
         ArrayList<String> index1 = new ArrayList<>();
         ArrayList<String> index2 = new ArrayList<>();
@@ -47,7 +47,7 @@ public class MemcachedController extends CommonController {
 
         System.out.printf("处理。。。\n");
 
-        return JSONObject.fromObject(resultMap).toString();
+        return resultMap;
     }
 
     /**

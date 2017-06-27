@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 
 	                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
@@ -10,11 +10,12 @@
 
     <!--开启注解支持-->
     <mvc:annotation-driven/>
-    <!-- 设置使用注解的类所在的jar包 -->
-    <context:component-scan base-package="com"/>
-
-    <!-- 对RequestMapping注解的控制器进行HTTP路径、HTTP方法和请求参数解析-->
-    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" autowire="no"></bean>
+    <!-- 使用默认模式处理静态资源 -->
+    <mvc:default-servlet-handler/>
+    <!-- 使@Autowire注解被支持 -->
+    <context:annotation-config></context:annotation-config>
+    <!-- 设置使用注解的类所在的jar包 annotation-config="true" 隐式的向Spring容器注册-->
+    <context:component-scan base-package="com" annotation-config="true"/>
 
     <!--异常处理器-->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
@@ -27,31 +28,61 @@
         </property>
     </bean>
 
+    <!--拦截器-->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/**" />
-            <bean class="com.controller.Interceptor" />
+            <mvc:mapping path="/**"/>
+            <bean class="com.controller.Interceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
-    <!--spring mvc 为视图层添加的前缀和后缀-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/view/"
-          p:suffix=".jsp"/>
-
-    <!-- 上传文件长度限制声明 -->
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="100000000"/>
+    <!--内容协商视图解析器 根据请求头的不同使用不同的响应-->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <!--设置内容协商管理器-->
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"></property>
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="prefix">
+                        <value>/WEB-INF/view/</value>
+                    </property>
+                    <property name="suffix">
+                        <value>.jsp</value>
+                    </property>
+                </bean>
+            </list>
+        </property>
+        <property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+                <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+                    <property name="marshaller">
+                        <bean class="org.springframework.oxm.xstream.XStreamMarshaller">
+                            <property name="supportedClasses">
+                                <list>
+                                    <value>java.util.Collection</value>
+                                </list>
+                            </property>
+                            <!--<property name="aliases">-->
+                            <!--<map>-->
+                            <!--<entry value="org.laohu.modules.school.model.School" key="school"></entry>-->
+                            <!--</map>-->
+                            <!--</property>-->
+                        </bean>
+                    </property>
+                </bean>
+            </list>
+        </property>
     </bean>
 
-    <!-- 视图配置 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix">
-            <value>/WEB-INF/view/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="mediaTypes">
+            <props>
+                <prop key="json">application/json</prop>
+                <prop key="xml">application/xml</prop>
+                <prop key="html">text/html</prop>
+            </props>
         </property>
     </bean>
-
 </beans>

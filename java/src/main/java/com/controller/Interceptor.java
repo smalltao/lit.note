@@ -1,14 +1,10 @@
 package com.controller;
 
-import com.serviceImpl.HttpInterceptorServiceImpl;
-import org.springframework.util.ReflectionUtils;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Field;
 
 /**
  * <p>Title:      http 拦截器. </p>
@@ -31,6 +27,7 @@ public class Interceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.printf("第一步 \n");
         return true;
     }
 
