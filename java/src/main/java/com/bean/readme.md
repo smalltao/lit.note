@@ -1,3 +1,5 @@
+# 以下内容配合数据库生成工具可实现 有数据库 mysql >> bean >> xsd >> xmlbean >> xml 的过程 搭配spring 内容协商视图解析器可以实现不同返回结果的视图
+
 ## bean 代码与 xsd 互换 生成xsd
 > Idea Tools > JAXB > Generate xml Schema from java using jaxb 弹出窗选择 Include parameter and return types of following methods
 
