@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- xml根结点 -->
+  <xs:element name="persons" type="persons"/>
 
   <xs:complexType name="persons">
     <xs:sequence>
-      <xs:element name="persions" type="persion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="person" type="person" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="persion">
+  <xs:complexType name="person">
     <xs:sequence>
       <xs:element name="address" type="xs:string" minOccurs="0"/>
       <xs:element name="age" type="xs:int"/>
@@ -23,4 +25,3 @@
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>
-

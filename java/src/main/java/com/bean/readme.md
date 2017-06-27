@@ -17,3 +17,7 @@
 > Tools -> XmlBeans -> Generate Java Code From Xml Schema Using XmlBeans。它生成的是jar文件
 
 # XMLActions 实现对xml文档的相关操作
+
+## 从xsd生成xml文档
+
+> Idea Tools > XMLAction > Generate Instance Document From Schema

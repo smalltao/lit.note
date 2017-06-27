@@ -1,11 +1,14 @@
 package com.controller;
 
 import com.bean.Texts;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -53,13 +56,13 @@ public class MemcachedController extends CommonController {
      * @Author <a href="litaoos2862@sogou-inc.com"/>李涛</a>
      * @CreateDate 2017/6/26 16:15
      */
-//    @ExceptionHandler(Exception.class)
-//    public void handleException(HttpServletRequest request, HttpServletResponse response, Exception exception) throws IOException {
-//        String message = exception.getMessage();
-//        if (StringUtils.isBlank(message)) {
-//            message = exception.toString();
-//            exception.printStackTrace();
-//        }
-//        System.out.printf("发生异常了：【 %s 】 \n", message);
-//    }
+    @ExceptionHandler(Exception.class)
+    public void handleException(HttpServletRequest request, HttpServletResponse response, Exception exception) throws IOException {
+        String message = exception.getMessage();
+        if (StringUtils.isBlank(message)) {
+            message = exception.toString();
+            exception.printStackTrace();
+        }
+        System.out.printf("发生异常了：【 %s 】 \n", message);
+    }
 }

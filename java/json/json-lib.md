@@ -1,5 +1,7 @@
 # json-lib使用配置
 
+> json lib 在数据量大时效率及其低，使用 阿里巴巴的 fastjson
+
 1. json toBean 时去除空字符串 和 null 字段
 
         使用拉姆的表达式

@@ -3,10 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 
-	                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
-						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+	                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+						http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
     <!--开启注解支持-->
     <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
@@ -40,12 +40,23 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
+    <!--spring 4.1 jsonp支持-->
+    <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+        <property name="jsonpParameterNames">
+            <set>
+                <value>jsonp</value>
+                <value>callback</value>
+            </set>
+        </property>
+    </bean>
+
     <!--内容协商视图解析器 根据请求头的不同使用不同的响应-->
     <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <!--设置内容协商管理器-->
         <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
         <property name="defaultViews">
             <list>
+                <!--json 视图类，但是不支持jsop，所以自己实现jsonp 视图解析类-->
                 <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
                 <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
                     <!--将java对象转换为xml-->
@@ -64,7 +75,7 @@
         </property>
         <property name="viewResolvers">
             <list>
-                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+                <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
                 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
                     <property name="prefix">
                         <value>/WEB-INF/view/</value>
@@ -85,7 +96,8 @@
         <property name="favorParameter" value="true"/>
         <property name="parameterName" value="format"/>
         <!--忽略请求头-->
-        <property name="ignoreAcceptHeader" value="true"/>
+        <property name="ignoreAcceptHeader" value="false"/>
+        <!-- 扩展名到MIME的映射；favorPathExtension, favorParameter是true时起作用 注：此项由默认后缀匹配 -->
         <property name="mediaTypes">
             <props>
                 <prop key="json">application/json</prop>
