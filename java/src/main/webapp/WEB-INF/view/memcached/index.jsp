@@ -4,6 +4,6 @@
     <title>缓存控制</title>
 </head>
 <body>
-${texts}
+<div id="litao">litao</div>
 </body>
 </html>
