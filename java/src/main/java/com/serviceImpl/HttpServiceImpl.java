@@ -2,6 +2,7 @@ package com.serviceImpl;
 
 import com.Utils.StringUtils;
 import com.service.HttpService;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
@@ -10,6 +11,7 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.conn.routing.HttpRoute;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
@@ -169,8 +171,8 @@ public class HttpServiceImpl implements HttpService {
         }
     }
 
+    public HttpEntity doRequest(HttpEntity entity) throws Exception {
 
-    public void doRequest() {
-        
+        return new StringEntity("");
     }
 }
