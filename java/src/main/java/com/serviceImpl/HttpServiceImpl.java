@@ -19,10 +19,7 @@ import javax.net.ssl.SSLException;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.UnknownHostException;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -52,7 +49,6 @@ public class HttpServiceImpl implements HttpService {
 
     private PoolingHttpClientConnectionManager manager = null;
     private CloseableHttpClient httpClient = null;
-    private Map<String, ExecutorService> serviceMap = null;
 
     /**
      * 整个链接池最大链接数
@@ -67,20 +63,6 @@ public class HttpServiceImpl implements HttpService {
 
     public void doInit() {
         logger.info("Init fetch service ...");
-
-        // key：链接池名称 value：连接池大小
-        serviceMap = new HashMap<>();
-        // 链接池的大小 晚些时候搞到properties
-        Map<String, Integer> map = StringUtils.getMap("vi:10|external:150|transform:150");
-
-        map.forEach((key, value) -> {
-            if (value != null && value > 0) {
-                serviceMap.put(key, Executors.newFixedThreadPool(value));
-            }
-        });
-        if (!serviceMap.containsKey(POOL_KEY_DEFAULT)) {
-            serviceMap.put(POOL_KEY_DEFAULT, Executors.newFixedThreadPool(POOL_KEY_DEFAULT_SIZE));
-        }
 
         manager = new PoolingHttpClientConnectionManager();
 
@@ -174,6 +156,7 @@ public class HttpServiceImpl implements HttpService {
 
     }
 
+
     public void doDestroy() {
         logger.info("Destroy fetch service.");
         isShutdown = true;
@@ -184,5 +167,10 @@ public class HttpServiceImpl implements HttpService {
         } catch (IOException e) {
             logger.error("Destroy fetch service error.", e);
         }
+    }
+
+
+    public void doRequest() {
+        
     }
 }

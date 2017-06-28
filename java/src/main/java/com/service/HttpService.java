@@ -34,5 +34,20 @@ public interface HttpService {
      */
     public void doDestroy() throws Exception;
 
+    /**
+     * <p>Title:      执行请求. </p>
+     * <p>
+     * 1. 请求的执行全部采用流式，不占用内存
+     * 2. 请求采用HttpEntity 请求体
+     * 2. 响应采用HttpEntity 响应体
+     * </p>
+     *
+     * @param
+     * @return
+     * @Author <a href="litaoos2862@sogou-inc.com"/>李涛</a>
+     * @CreateDate 2017/6/28 16:58
+     */
+    public void doRequest() throws Exception;
+
 
 }
