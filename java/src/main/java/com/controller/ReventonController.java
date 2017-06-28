@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.xmlbean.HttpResult;
+import com.bean.HttpResult;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * <p>Title:      数据中心控制器. </p>
@@ -25,6 +27,16 @@ public class ReventonController extends CommonController {
     @RequestMapping(value = {"", "/", "/index"})
     public HttpResult index(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpResult result = new HttpResult();
+
+        result.setCode("123456");
+        result.setMsg("你好，你知道我是谁吗？");
+        ArrayList<Object> li = new ArrayList<>();
+        li.add("我去");
+        li.add("这样可以");
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("key", "value");
+        result.setList(li);
+        result.setMap(map);
 
         return result;
     }
