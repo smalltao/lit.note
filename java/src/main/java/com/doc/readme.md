@@ -12,7 +12,7 @@
 > [下载](http://archive.apache.org/dist/xmlbeans/binaries/xmlbeans-2.6.0.zip)
 
 
-## 从xsd生成java bean 生成的试个jar 包
+## 从xsd生成java bean 生成的是个jar 包
 
 > Tools -> XmlBeans -> Generate Java Code From Xml Schema Using XmlBeans。它生成的是jar文件
 

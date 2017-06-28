@@ -61,14 +61,7 @@
                 <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
                     <!--将java对象转换为xml-->
                     <property name="marshaller">
-                        <bean class="org.springframework.oxm.xstream.XStreamMarshaller">
-                            <property name="supportedClasses">
-                                <list>
-                                    <value>java.util.Collection</value>
-                                    <value>com.bean.Texts</value>
-                                </list>
-                            </property>
-                        </bean>
+                        <bean class="org.springframework.oxm.xstream.XStreamMarshaller" />
                     </property>
                 </bean>
             </list>
