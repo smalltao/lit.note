@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.bean.Texts;
+import com.bean.HttpResult;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * <p>Title:      com.memcached 缓存控制器. </p>
@@ -25,26 +24,13 @@ import java.util.HashMap;
 public class MemcachedController extends CommonController {
 
     @RequestMapping(value = {"", "/", "/index"})
-    public Texts index(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        Texts texts = new Texts();
+    public HttpResult index(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpResult result = new HttpResult();
         ArrayList<String> list = new ArrayList<>();
         list.add("你好");
         list.add("我是");
-        texts.setText(list);
-
-        return texts;
-    }
-
-    @RequestMapping(value = "list")
-    public HashMap list(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        HashMap resultMap = new HashMap();
-        ArrayList<String> index1 = new ArrayList<>();
-        ArrayList<String> index2 = new ArrayList<>();
-        resultMap.put("index1", index1);
-        resultMap.put("index2", index2);
-        System.out.printf("处理。。。\n");
-
-        return resultMap;
+        result.setObj(list);
+        return result;
     }
 
     /**

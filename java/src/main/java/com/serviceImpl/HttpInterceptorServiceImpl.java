@@ -21,7 +21,6 @@ public class HttpInterceptorServiceImpl implements InterceptorService {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        System.out.println("这个是http的prehandle");
         return true;
     }
 
