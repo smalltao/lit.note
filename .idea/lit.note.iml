@@ -19,6 +19,12 @@
         <webroots>
           <root url="file://$MODULE_DIR$/java/src/main/webapp" relative="/" />
         </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/java/src/main/java" />
+          <root url="file://$MODULE_DIR$/java/src/main/resources" />
+          <root url="file://$MODULE_DIR$/java/src/test/java/com" />
+          <root url="file://$MODULE_DIR$/java/src/test/resources" />
+        </sourceRoots>
       </configuration>
     </facet>
   </component>
@@ -28,6 +34,9 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/java/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/java/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/java/src/test/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/java/src/test/java/com" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/java/src/test/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/java/src/main/webapp/WEB-INF/classes" />
       <excludeFolder url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
@@ -44,8 +53,8 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.11" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
+    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jms:4.2.3.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.2.3.RELEASE" level="project" />
