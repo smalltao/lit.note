@@ -19,6 +19,8 @@
     <version>2.4.2</version>
     <configuration>
         <skipTests>true</skipTests>
+        <!-- 输出编码 -->
+        <argLine>-Dfile.encoding=UTF-8</argLine>
     </configuration>
 </plugin>
 ```
