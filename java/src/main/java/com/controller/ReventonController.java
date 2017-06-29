@@ -32,7 +32,7 @@ public class ReventonController extends CommonController {
         result.setMsg("你好，你知道我是谁吗？");
         ArrayList<Object> li = new ArrayList<>();
         li.add("我去");
-        li.add("这样可以");
+        li.add("修改一下，看看服务器上的数据是否正常，我也是醉了");
         HashMap<Object, Object> map = new HashMap<>();
         map.put("key", "value");
         result.setList(li);
