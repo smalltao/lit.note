@@ -29,10 +29,10 @@ public class ReventonController extends CommonController {
         HttpResult result = new HttpResult();
 
         result.setCode("123456");
-        result.setMsg("你好，你知道我是谁吗？");
+        result.setMsg("你好，你知道吗？");
         ArrayList<Object> li = new ArrayList<>();
         li.add("我去");
-        li.add("修改一下，看看服务器上的数据是否正常，我也是醉了");
+        li.add("修改一下");
         HashMap<Object, Object> map = new HashMap<>();
         map.put("key", "value");
         result.setList(li);
