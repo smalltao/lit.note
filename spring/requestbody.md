@@ -30,11 +30,11 @@ $.ajax({
 1. 控制器代码
 ```
 @RequestMapping(value = "/testRequestBody", method= RequestMethod.POST)
-  @ResponseBody
-  public Person testRequestBody(@RequestBody Person p) {
-      System.out.println("creating a employee:" + p);
-      return p;
-  }
+@ResponseBody
+public Person testRequestBody(@RequestBody Person p) {
+  System.out.println("creating a employee:" + p);
+  return p;
+}
 ```
 
 2. Ajax 代码

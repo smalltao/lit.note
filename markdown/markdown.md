@@ -33,4 +33,34 @@
 > pandoc -f markdown -t docx ./test.md -o test.docx
 > GitHub风格markdown语法：pandoc -f markdown_github -t docx ./test.md -o test.docx
 
+###  pandoc 使用
+官方命令demo：http://pandoc.org/try/
+
+```
+pandoc x.html -o x.md
+pandoc -f html -t markdown http://www.fsf.org
+pandoc --from markdown_strict --to html5
+
+# -f 参数用于指定源文件格式
+# -t 参数用于指定输出文件格式
+# -o 参数用于指定输出文件
+# --ascii 可以避免转成utf-8编码，这样中文在浏览器上就不会乱码了
+
+pandoc --latex-engine=xelatex yourfile.txt -o newfile.pdf
+注意，为了正确转换中文文本，请修改模板文件，在模板文件第一行下方加入
+\usepackage{ctex}
+当然你首先得确认你的系统上可以正确编译和生成中文tex文件。另外，模板文件在哪里呢？这个需要说明一下，你可以使用如下命令查看：
+pandoc -D latex
+```
+> 如果不使用-f和-t参数，pandoc将会根据输入文件以及-o指定的输出文件格式来确定转换的格式类型
+
+> Pandoc不支持.doc格式，如果需要进行转换，则需要先将.doc转换为.docx
+
+#### 样式控制
+```
+--css 控制生成 html 的样式
+--reference-docx 控制生成 docx 的样式
+```
+> 使用 template，可以先用 pandoc -D latex 看默认的模板，然后修改一下保存成template.latex，然后用 pandoc 的时候加上 --template template.latex 选项，就可以了。
+
 
