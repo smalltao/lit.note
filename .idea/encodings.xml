@@ -13,26 +13,6 @@
     <file url="file://$PROJECT_DIR$/java/junit.md" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java/jvm.md" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java/src/main/java/com/bean/HttpResult.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/AbstractCollection.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/AbstractMap.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/AbstractSet.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/Entry.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/EntryIterator.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/EntrySet.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/EntrySpliterator.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/HashIterator.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/HashMap.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/HashMapSpliterator.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/HttpResult.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/HttpResult.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/KeyIterator.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/KeySet.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/KeySpliterator.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/Node.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/TreeNode.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/ValueIterator.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/ValueSpliterator.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/java/src/main/java/com/xmlbean/Values.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/java/tools.md" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jenkins/jenkins.md" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/nginx/nginx.md" charset="UTF-8" />
