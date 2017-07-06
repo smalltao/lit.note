@@ -202,7 +202,7 @@ no equivalent | updated
 
 ### 使用计算属性
 > 结合 v-model 和 @event注解
-1. v-model 实现表单输入和应用状态之间的双向绑定。
+#### v-model 实现表单输入和应用状态之间的双向绑定。
 
 ```
 <div id="app">
@@ -229,6 +229,293 @@ new Vue({
     }
 })
 ```
+#### 缓存计算属性
+```
+computed: {
+    trillionthDiqitOfPi() {
+        // 计算小时并且延迟数秒
+        return 2
+    }
+}
+
+然后，可以在需要的地方使用，不需要重写计算
+unecessarilyComplexDoubler (input) {
+    return input * this.trillionthDiqitOfPi
+}
+每次我们调用trillionthDiqitOfPi方法，都是从缓存中获取值，不需要每次都计算
+```
+
+
+#### 设置被计算的值
+> @input v-bind 的缩写 对input方法的绑定 :value=  v-model 的缩写 对输出值的绑定
+
+```
+<div id="app">
+    <label>Lets: <input v-model="legCount" type="range" /></label>
+    <br />
+    <label>Tops:<input @input="update" :value="tableCount"/></label>
+    <br />
+    <output>We are going to build {{legCount}} legs and assembly {{tableCount}} tables.</output>
+</div>
+
+new Vue({
+    el:'#app',
+    data: {
+        legCount:0
+    },
+    computed: {
+        tableCount: {
+            get() {
+                return this.legCount / 4
+            },
+            set(newValue) {
+                this.legCount = newValue * 4
+            }
+        }
+    },
+    update(e) {
+        this.tableCount = e.target.value
+    }
+})
+
+```
+
+#### 使用计算属性过滤一个列表
+
+```
+data : {
+    experiments: [
+        {name: 'RHIC Ion Collider', cost: 650, field: 'Physics'},
+        {name: 'Neptune Undersea Observatory', cost: 100, field: 'Biology'},
+        {name: 'Violinist in the Metro', cost: 3, field: 'Psychology'},
+        {name: 'Large Hadron Collider', cost: 7700, field: 'Physics'},
+        {name: 'DIY Particle Detector', cost: 0, field: 'Physics'}
+    ]
+}
+
+输出元素:
+<div id="app">
+  <h3>List of expensive experiments</h3>
+  <ul>
+    <li v-for="exp in experiments">
+      {{exp.name}} ({{exp.cost}}m )
+    </li>
+  </ul>
+</div>
+
+computed: {
+    nonPhysics () {
+        return this.experiments.filter(exp => exp.field !== 'Physics')
+    }
+}
+<li v-for="exp in nonPhysics">
+    {{exp.name}} ({{exp.cost}}m	)
+</li>
+```
+
+#### 使用计算属性排序一个列表
+```
+<div id="app">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Electricity</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+new Vue({
+    el: '#app',
+    data: {
+        dams: [
+            {name: 'Nurek Dam', country: 'Tajikistan', electricity: 3200},
+            {name: 'Three Gorges Dam', country: 'China', electricity: 22500},
+            {name: 'Tarbela Dam', country: 'Pakistan', electricity: 3500},
+            {name: 'Guri Dam', country: 'Venezuela', electricity: 10200}
+        ]
+    }
+})
+<tr v-for="dam in dams">
+    <td>{{dam.name}}</td>
+    <td>{{dam.country}}</td>
+    <td>{{dam.electricity}} MegaWatts</td>
+</tr>
+computed: {
+    damsByElectricity () {
+        return this.dams.sort((d1, d2) => d2.electricity - d1.electricity);
+    }
+}
+<tr v-for="dam in damsByElectricity">
+    <td>{{dam.name}}</td>
+    <td>{{dam.country}}</td>
+    <td>{{dam.electricity}} MegaWatts</td>
+</tr>
+```
+
+#### 使用过滤器格式化输出
+```
+1. 增加accounting.js 依赖
+# npm install accounting 安装到全局 ，不会修改项目的package.json
+# npm install accounting --save-dev 安装到项目，会修改package.json 将依赖加到package.json 加到项目内
+#import Accounting from "accounting"; 在实例中引入依赖
+2. 简单实例
+Vue.filter('currency', function (money) {
+    return Accounting.formatMoney(money)
+})
+
+new Vue({
+    el: '#app',
+    render: h => h(App)
+})
+<div id="app">
+    I have {{5 | currency}} in my pocket
+</div>
+3. 复杂实例
+
+```
+
+#### 使用 render 函数传递作用域
+```
+render 和 export default 一起使用
+new Vue({
+    el: '#app',
+    render: h => h(App)
+})
+导出的name对应 render的h(name)
+    export default {
+        name: 'app',
+        data () {
+            return {
+                //vue 实例中的data对应的部分
+            }
+        }
+    }
+```
+
+#### 格式化日期
+1. 使用 moment.js 模块
+```
+Vue.filter('date', function (date, locale) {
+    // 法国时间
+    Moment.locale(locale)
+    return Moment(date).format('LL')
+})
+
+new Vue({
+    el: '#app',
+    render: h => h(App)
+})
+<div id="app">
+     // 为过滤器添加参数
+     The Storming of the Bastille, happened on {{bastilleStormingDate |date('fr')}}
+</div>
+export default {
+    name: 'app',
+    data () {
+        bastilleStormingDate: '1789-07-14 17 h'
+    }
+}
+```
+
+#### 有条件的显示隐藏元素 使用 v-if 和 v-show 指令
+```
+<div id="app">
+    <div v-show="isNight">
+        I'm a ghost! Boo!
+    </div>
+</div>
+export default {
+    name: 'app',
+    computed : {
+        isNight() {
+            return (new Date('4 January 03:30')).getHours() < 7
+        }
+    }
+}
+```
+
+#### 有条件的增加样式
+```
+<div id="app">
+    <textarea v-model="memeText" :class="{ warn: longText }" :maxlength="limit"></textarea>
+    {{memeText.length}}
+</div>
+export default {
+    name: 'app',
+    data() {
+        return {
+            memeText: 'What if I told you ' + 'CSS can do that',
+            limit: 50
+        }
+    },
+    computed: {
+        longText() {
+//                剩余输入字符数小于10
+            if (this.limit - this.memeText.length <= 10) {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+}
+.warn {
+    background-color: mistyrose
+}
+```
+
+#### 样式转换
+> 简单使用过渡组件 transition Outputting raw HTML
+
+```
+<div id="app">
+    <article>
+        fruit.<br>
+        They call me
+        They call me	fish.<br>
+        They call me	insect.<br>
+        But actually	I'm not one of those.
+
+        <div id="solution" @click="showSolution = true">
+            I	am a <transition name="fade"> <span id="dragon" v-show="showSolution">Dragon</span></transition>
+        </div>
+    </article>
+</div>
+export default {
+    name: 'app',
+    data() {
+        return {
+            showSolution: true
+        }
+    }
+}
+#solution {
+    cursor: pointer;
+}
+.fade-enter {
+    opacity: 0
+}
+.fade-enter-active {
+    transition: opacity .5s;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
