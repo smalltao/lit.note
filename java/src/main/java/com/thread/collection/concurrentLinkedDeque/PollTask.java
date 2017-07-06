@@ -1,4 +1,4 @@
-package com.thread.collection;
+package com.thread.collection.concurrentLinkedDeque;
 
 import java.util.concurrent.ConcurrentLinkedDeque;
 
