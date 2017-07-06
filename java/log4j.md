@@ -89,5 +89,11 @@ log4j.logger.org.springframework=INFO
 log4j.rootLogger=INFO, CONSOLE ,PRODUCT,PRODUCT-ERROR
 ```
 
+## 子日志是否输出到终端配置
+```
+log4j.additivity.org.apache=true
+如果additivity为false，那么只生成一个rollinglogfile.log的日志文件，屏幕上没有日志信息输出
+```
+
 
 
