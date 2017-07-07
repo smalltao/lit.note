@@ -37,7 +37,7 @@ build_resin_zhihu(){
 
 build_nginx_1() {
     echo "install nginx ..."
-    yun instal erase nginx*
+    yun install erase nginx*
     yum -y install nginx-xx-search.newpassport.x86_64
 }
 
