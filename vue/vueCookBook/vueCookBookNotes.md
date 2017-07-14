@@ -502,6 +502,44 @@ export default {
     transition: opacity .5s;
 }
 ```
+#### 使用 v-html 指令进行 html节点的输出
+```
+export default {
+    name: 'app',
+    data() {
+        return {
+            htmlTexts: ['Dear John,<br/>thank you for the <pre>Batman vs Superman</pre> DVD!',
+                'Dear John,<br/>thank you for <i>Ghostbusters 3</i>!',
+                'Dear John,<br/>thanks, <b>Gods of Egypt</b> is my new favourite!']
+        }
+    }
+}
+<div id="app" v-html="htmlTexts[0]">
+</div>
+```
+> 输出节点的另一种方式
+
+```
+<div id="app">
+    <thanks gift="Batman" decoration="strong"></thanks>
+</div>
+functional : 使组件无状态（没有 data ）和无实例（没有 this 上下文）。他们用一个简单的 render 函数返回虚拟节点使他们更容易渲染。
+render : 字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。render 函数接收一个 createElement 方法作为第一个参数用来创建 VNode
+如果组件是一个函数组件，Render 函数还会接收一个额外的 context 参数，为没有实例的函数组件提供上下文信息。
+Vue.component('thanks', {
+    functional: true,
+    render: function (createElement, context) {
+        let decoratedGift = createElement(context.props.decoration, context.props.gift)
+        // 创建一个p标签
+        return createElement('p', ['Dear John, thanks for ', decoratedGift])
+    },
+    props: {
+        gift: String,
+        decoration: String
+    }
+})
+```
+#### 创建一个带有多选框的表单
 
 
 

@@ -1,38 +1,32 @@
 <template>
     <div id="app">
-        <article>
-            fruit.<br>
-            They call me
-            They call me	fish.<br>
-            They call me	insect.<br>
-            But actually	I'm not one of those.
-
-            <div id="solution" @click="showSolution = true">
-                I	am a <transition name="fade"> <span id="dragon" v-show="showSolution">Dragon</span></transition>
-            </div>
-        </article>
+        <form>
+            <fieldset>
+                <legend>What printers you want to use?</legend>
+                <label>
+                    <input type="checkbox" v-model="outputPrinter" value="monochrome"/>Monochrome
+                </label><br />
+                <label>
+                    <input type="checkbox" v-model="outputPrinter" value="plasma"/>Plasma Color
+                </label><br />
+                <label>
+                    <input type="checkbox" v-model="outputPrinter" value="cloner"/>3D DNA Cloner
+                </label><br />
+                <input type="submit" value="Print now"/>
+            </fieldset>
+        </form>
     </div>
 </template>
-
 <script>
     export default {
         name: 'app',
         data() {
             return {
-                showSolution: true
+                outputPrinter: []
             }
         }
     }
 </script>
 <style>
-    #solution {
-        cursor: pointer;
-    }
-    .fade-enter {
-        opacity: 0
-    }
-    .fade-enter-active {
-        transition: opacity .5s;
-    }
 
 </style>
