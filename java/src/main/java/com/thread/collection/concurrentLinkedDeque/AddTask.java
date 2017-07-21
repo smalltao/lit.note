@@ -28,6 +28,5 @@ public class AddTask implements Runnable {
             //将新元素添加到列表的尾部
             list.add(name + " event " + i);
         }
-
     }
 }

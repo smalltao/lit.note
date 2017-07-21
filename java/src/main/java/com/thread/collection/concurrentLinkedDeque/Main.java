@@ -28,13 +28,13 @@ public class Main {
         System.out.printf("main: %d 个addTask 已经启动\n", thread.length);
 
         //等待所有线程结束
-        for (int i = 0; i < thread.length; i++) {
-            try {
-                thread[i].join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+//        for (int i = 0; i < thread.length; i++) {
+//            try {
+//                thread[i].join();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         System.out.printf("main： list的大小为：%d \n", list.size());
 
@@ -47,13 +47,13 @@ public class Main {
 
         System.out.printf("main: %d pollTask 已经结束 \n", thread.length);
 
-        for (int i = 0; i < thread.length; i++) {
-            try {
-                thread[i].join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+//        for (int i = 0; i < thread.length; i++) {
+//            try {
+//                thread[i].join();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         System.out.printf("main： list的大小为：%d \n", list.size());
     }

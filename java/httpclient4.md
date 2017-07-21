@@ -752,6 +752,15 @@ try {
     throw ex;
 }
 ```
+#### 优雅拼接url参数方式 get方式
+```
+List<BasicNameValuePair> nvps = new ArrayList<>();
+nvps.add(new BasicNameValuePair("q", queryRequest.getKeyword()));
+queryRequest.setUrl(YOUDAO_URL + URLEncodedUtils.format(nvps, Consts.UTF_8));
+
+这种就很不好看，还容易出错
+String url = MicrosoftApiUtil.SERVICE_DETECT_URL + "appId=" + URLEncoder.encode(MicrosoftApiUtil.token, MicrosoftApiUtil.ENCODING) + MicrosoftApiUtil.PARAM_TEXT_SINGLE + URLEncoder.encode(text, MicrosoftApiUtil.ENCODING);
+```
 
 
 
