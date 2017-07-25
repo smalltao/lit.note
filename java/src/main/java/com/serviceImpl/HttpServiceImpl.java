@@ -16,7 +16,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.net.ssl.SSLException;
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -32,18 +35,10 @@ import java.util.concurrent.TimeUnit;
  * @Author <a href="litaoos2862@sogou-inc.com"/>李涛</a>
  * @CreateDate 2017/6/28 15:40
  */
+@Service("httpService")
 public class HttpServiceImpl implements HttpService {
 
     private static final Logger logger = Logger.getLogger(HttpServiceImpl.class);
-
-    /**
-     * 默认链接池名称
-     */
-    private static final String POOL_KEY_DEFAULT = "default";
-    /**
-     * 默认链接池大小
-     */
-    private static final int POOL_KEY_DEFAULT_SIZE = 200;
     /**
      * 链接池管理器轮询参数
      */
@@ -63,6 +58,7 @@ public class HttpServiceImpl implements HttpService {
     private int roundTime = 3000; // 连接池轮训时间
     private int idleTime = 30; // 链接闲置时间
 
+    @PostConstruct
     public void doInit() {
         logger.info("Init fetch service ...");
 
@@ -158,7 +154,7 @@ public class HttpServiceImpl implements HttpService {
 
     }
 
-
+    @PreDestroy
     public void doDestroy() {
         logger.info("Destroy fetch service.");
         isShutdown = true;
@@ -169,10 +165,5 @@ public class HttpServiceImpl implements HttpService {
         } catch (IOException e) {
             logger.error("Destroy fetch service error.", e);
         }
-    }
-
-    public HttpEntity doRequest(HttpEntity entity) throws Exception {
-
-        return new StringEntity("");
     }
 }

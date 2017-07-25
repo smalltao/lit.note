@@ -1,7 +1,5 @@
 package com.service;
 
-import org.apache.http.HttpEntity;
-
 /**
  * <p>Title:      http 接口服务. </p>
  * <p>
@@ -35,22 +33,4 @@ public interface HttpService {
      * @CreateDate 2017/6/28 16:39
      */
     public void doDestroy() throws Exception;
-
-    /**
-     * <p>Title:      执行请求. </p>
-     * <p>
-     * 1. 请求的执行全部采用流式，不占用内存
-     * 2. 请求采用HttpEntity 请求体
-     * 3. 只进行请求的发送和接收工作
-     * 4. 其他检测放到上层 ，比如 ： url检测 、header设置、cookies设置、refer过滤
-     * </p>
-     *
-     * @param
-     * @return
-     * @Author <a href="litaoos2862@sogou-inc.com"/>李涛</a>
-     * @CreateDate 2017/6/28 16:58
-     */
-    public HttpEntity doRequest(HttpEntity entity) throws Exception;
-
-
 }

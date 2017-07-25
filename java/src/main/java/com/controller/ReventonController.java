@@ -42,12 +42,6 @@ public class ReventonController extends CommonController {
     }
 
     /**
-     * TODO 可以通过 @PathVariable path属性实现一个动态变量控制器
-     * 根据不同的path 路由到不同的请求上
-     * */
-
-
-    /**
      * <p>Title:      统一异常处理. </p>
      * <p>Description </p>
      *

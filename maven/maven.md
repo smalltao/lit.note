@@ -1,3 +1,12 @@
+## 标签解释
+groupId : 是项目组织唯一的标识符，实际对应JAVA的包的结构，是main目录里java的目录结构
+artifactId : 是项目的唯一的标识符，实际对应项目的名称，就是项目根目录的名称。
+name : 项目更友好的名称，方便交流
+packaging : 默认为jar 当不定义时默认是jar
+properties : 项目中用到的一些属性信息
+repositories : 为项目指定仓库 有的时候构建找不到仓库，下载不到需要的依赖，所以需要指定仓库的具体位置
+build下 extensions : 是执行构建过程中可能用到的其他工具，在执行构建的过程中被加入到classpath中，extensions>给出通用插件的一个具体实现，用于构建过程。
+
 ## 国内maven 仓库
 
 ```
