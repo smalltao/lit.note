@@ -4,6 +4,7 @@ import com.bean.HttpResult;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,6 @@ import java.util.HashMap;
  * @CreateDate 2017/6/28 11:41
  */
 @Controller
-@RequestMapping("/reventondc")
 public class ReventonController extends CommonController {
 
     @RequestMapping(value = {"", "/", "/index"})
@@ -37,6 +37,13 @@ public class ReventonController extends CommonController {
         map.put("key", "value");
         result.setList(li);
         result.setMap(map);
+
+        return result;
+    }
+
+    @RequestMapping("/{path}")
+    public HttpResult doHttp(HttpServletRequest request, HttpServletResponse response, @PathVariable("path") String path) throws Exception {
+        HttpResult result = new HttpResult();
 
         return result;
     }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import java.net.URL;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -52,8 +52,8 @@ public class ThreadServiceImpl implements ThreadService {
         logger.info("Init threadService start ...");
         serviceMap = new HashMap<>();
         properties = new Properties();
-        URL url = ClassLoader.getSystemResource("thread-pool.properties");
-        properties.load(url.openStream());
+        InputStream url = this.getClass().getClassLoader().getResourceAsStream("thread-pool.properties");
+        properties.load(url);
 
         Map<String, Integer> map = StringUtils.getMap(properties.getProperty("pool_size"));
         map.forEach((key, value) -> {
