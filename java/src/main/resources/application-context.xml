@@ -9,7 +9,7 @@
 		                   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
     <aop:aspectj-autoproxy/>
-    <context:property-placeholder location="classpath*:*-conf.properties" />
+    <context:property-placeholder location="classpath*:*-conf.properties"/>
     <import resource="application-memcached.xml"/>
     <import resource="application-mvc.xml"/>
 </beans>

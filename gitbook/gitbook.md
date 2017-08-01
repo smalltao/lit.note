@@ -1,4 +1,7 @@
-1. 安装npm 
+# gitbook 笔记
+## 相关链接 http://www.chengweiyang.cn/gitbook/github-pages/README.html
+## 一步一步的学习
+1. 安装npm
 2. 安装gitbook 脚手架 
 
 ```

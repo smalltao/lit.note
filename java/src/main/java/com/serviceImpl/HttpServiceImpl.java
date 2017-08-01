@@ -2,7 +2,6 @@ package com.serviceImpl;
 
 import com.Utils.StringUtils;
 import com.service.HttpService;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
@@ -11,20 +10,19 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.conn.routing.HttpRoute;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.net.ssl.SSLException;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.UnknownHostException;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -39,6 +37,9 @@ import java.util.concurrent.TimeUnit;
 public class HttpServiceImpl implements HttpService {
 
     private static final Logger logger = Logger.getLogger(HttpServiceImpl.class);
+
+    private HashMap<String, Properties> propertiesHashMap;
+
     /**
      * 链接池管理器轮询参数
      */
@@ -58,9 +59,9 @@ public class HttpServiceImpl implements HttpService {
     private int roundTime = 3000; // 连接池轮训时间
     private int idleTime = 30; // 链接闲置时间
 
-    @PostConstruct
-    public void doInit() {
+    public void doInit(HashMap<String, Properties> propertiesHashMap) {
         logger.info("Init fetch service ...");
+        this.propertiesHashMap = propertiesHashMap;
 
         manager = new PoolingHttpClientConnectionManager();
 
@@ -154,7 +155,6 @@ public class HttpServiceImpl implements HttpService {
 
     }
 
-    @PreDestroy
     public void doDestroy() {
         logger.info("Destroy fetch service.");
         isShutdown = true;
@@ -165,5 +165,9 @@ public class HttpServiceImpl implements HttpService {
         } catch (IOException e) {
             logger.error("Destroy fetch service error.", e);
         }
+    }
+
+    public void execute() {
+
     }
 }

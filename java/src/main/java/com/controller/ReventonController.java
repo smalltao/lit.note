@@ -1,7 +1,9 @@
 package com.controller;
 
 import com.bean.HttpResult;
+import com.service.HttpService;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * <p>Title:      数据中心控制器. </p>
+ * <p>Title:      控制器. </p>
  * <p>Description TODO </p>
  * <p>Company:    https://www.sogou.com/ </p>
  *
@@ -23,6 +25,9 @@ import java.util.HashMap;
  */
 @Controller
 public class ReventonController extends CommonController {
+
+    @Autowired
+    private HttpService httpService;
 
     @RequestMapping(value = {"", "/", "/index"})
     public HttpResult index(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -44,7 +49,7 @@ public class ReventonController extends CommonController {
     @RequestMapping("/{path}")
     public HttpResult doHttp(HttpServletRequest request, HttpServletResponse response, @PathVariable("path") String path) throws Exception {
         HttpResult result = new HttpResult();
-
+        httpService.execute();
         return result;
     }
 

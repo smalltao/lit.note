@@ -1,5 +1,8 @@
 package com.service;
 
+import java.util.HashMap;
+import java.util.Properties;
+
 /**
  * <p>Title:      http 接口服务. </p>
  * <p>
@@ -23,7 +26,7 @@ public interface HttpService {
      * @Author <a href="litaoos2862@sogou-inc.com"/>李涛</a>
      * @CreateDate 2017/6/28 15:42
      */
-    public void doInit() throws Exception;
+    public void doInit(HashMap<String, Properties> propertiesHashMap) throws Exception;
 
     /**
      * <p>Title:      销毁链接池. </p>
@@ -33,4 +36,11 @@ public interface HttpService {
      * @CreateDate 2017/6/28 16:39
      */
     public void doDestroy() throws Exception;
+
+    /**
+     * 执行请求
+     *
+     * @throws Exception
+     */
+    public void execute() throws Exception;
 }

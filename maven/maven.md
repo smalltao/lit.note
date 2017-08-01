@@ -99,7 +99,7 @@ mvn test -Dmaven.test.failure.ignore=true
 　mvn -Dtest=TestCircle#testOne+testTwo test   #(Surefire2.12.1+, Junit4.x+)
 ```
 
-> 并发执行测试 mvn命令加-T选项，多模块项目的各个模块可以并行构建
+> 并发执行测试 mvn 命令加-T选项，多模块项目的各个模块可以并行构建
 
 > 两个方式：
 
