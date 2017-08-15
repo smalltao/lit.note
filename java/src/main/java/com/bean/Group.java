@@ -1,5 +1,9 @@
 package com.bean;
 
+import org.apache.commons.lang.StringUtils;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +17,8 @@ import java.util.List;
  */
 public class Group {
 
-    private Long       id;
-    private String     name;
+    private Long id;
+    private String name;
     private List<User> users = new ArrayList<User>();
 
     public Long getId() {
@@ -44,4 +48,6 @@ public class Group {
     public void addUser(User user) {
         users.add(user);
     }
+
+
 }
