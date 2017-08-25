@@ -1,5 +1,5 @@
 1、python 链接mysql 数据库
-安装mysql-python 下载地址：https://pypi.python.org/pypi/MySQL-python/
+安装mysql-python 下载地址：https://pypi.python.org/pypi/yum yu/
 进入 MySQL-python-1.2.5目录 执行 python setup.py install
 安装必要开发插件 install python-devel mysql-devel
 

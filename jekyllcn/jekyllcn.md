@@ -111,3 +111,6 @@ $ gem update jekyll
 └── index.html
 ```
 
+bundle 结合
+
+
